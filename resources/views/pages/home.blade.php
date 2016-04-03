@@ -1,4 +1,6 @@
 @extends('layouts.default')
 @section('content')
-    Soy una pagina cheveer
+<div>
+	<img id="homeImage" src="http://localhost:8000/img/homeImage.png">
+</div>
 @stop

@@ -4,4 +4,4 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 <!-- Compiled and minified JavaScript Materialize -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<!--<link href="/CSS/style.css" media="all" rel="stylesheet" type="text/css" />-->
+<link href="http://localhost:8000/CSS/style.css" media="all" rel="stylesheet" type="text/css" />

@@ -1,3 +1,8 @@
 .transparent {
    background-color: black;
 }
+
+#homeImage{
+  width: 100%;
+  heigth: 100%;
+}
