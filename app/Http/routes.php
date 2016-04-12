@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('/pages/home');
 });
 
+Route::get('/sigin','SigInController@index');
+Route::get('/register','RegisterController@index');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

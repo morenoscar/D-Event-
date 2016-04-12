@@ -1,8 +1,75 @@
-.transparent {
-   background-color: black;
+header{
+  position: relative;;
+  min-width: 100%;
 }
 
-#homeImage{
+body{
+  overflow: hidden;
+}
+
+.main-content{
+  position: absolute;
+  background: url(http://localhost:8000/img/home.png) no-repeat center center fixed;
+	background-size: cover;
   width: 100%;
-  heigth: 100%;
+  height: 100vh;
+}
+
+
+/*
+    ---
+        STYLE DEL SIG-IN.
+    ---
+*/
+
+.cover {
+	height: 80vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.cover .bloque {
+	background: white;
+	width: 500px;
+	text-align: center;
+	color: black;
+	padding-top: 100px;
+  padding-bottom: 80px;
+  box-shadow: 10px 10px 15px black;
+}
+
+.cover .bloque input[type=text] {
+    width: 75%;
+}
+
+.cover .bloque input[type=password] {
+    width: 75%;
+}
+
+/*
+    ---
+        Link
+    ---
+*/
+
+a{
+  color: orange;
+}
+
+
+/*
+    ---
+        Footer
+    ---
+*/
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  color: white;
 }
