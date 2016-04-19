@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
 <head>
-  @include('includes.head')
+  @include('includes.pre-home.head')
   @yield('title-page')
 </head>
 <header>
-  @include('includes.header')
+  @include('includes.pre-home.header')
 </header>
 <body>
 

@@ -1,14 +1,8 @@
 header{
-  position: relative;;
   min-width: 100%;
 }
 
-body{
-  overflow: hidden;
-}
-
 .main-content{
-  position: absolute;
   background: url(http://localhost:8000/img/home.png) no-repeat center center fixed;
 	background-size: cover;
   width: 100%;
@@ -23,7 +17,7 @@ body{
 */
 
 .cover {
-	height: 80vh;
+	height: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -41,12 +35,16 @@ body{
   box-shadow: 10px 10px 15px black;
 }
 
-.cover .bloque input[type=text] {
+.cover .bloque input{
     width: 75%;
 }
 
-.cover .bloque input[type=password] {
-    width: 75%;
+.bottom{
+  width: 500px;
+}
+
+.bottom .bottomRight{
+  text-align: left;
 }
 
 /*
@@ -67,7 +65,6 @@ a{
 */
 
 .footer{
-  position: absolute;
   bottom: 0;
   width: 100%;
   background: black;

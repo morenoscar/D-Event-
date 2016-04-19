@@ -8,8 +8,13 @@ use App\Http\Requests;
 
 class SigInController extends Controller
 {
-  public function index()
+  public function sigin()
   {
-      return view('/pages/sigin');
+      return view('/pages/pre-home/sigin');
+  }
+
+  public function register()
+  {
+      return view('/pages/pre-home/register');
   }
 }

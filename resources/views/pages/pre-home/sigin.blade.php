@@ -1,4 +1,4 @@
-@extends('layouts.materialize')
+@extends('layouts.pre-home')
 
 @section('title-page')
 <title>SigIn</title>
@@ -22,7 +22,9 @@
 			{!! Form::close() !!}
 	</div>
 	<div class="bottom">
-		<a href="#">Olvide mi contraseña</a>
+		<div class="bottomRight">
+			<a href="#">Olvide mi contraseña</a>
+		</div>
 		¿No tienes cuenta? <a href="/register">Registrate</a>
 	</div>
 </div>

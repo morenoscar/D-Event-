@@ -1,4 +1,4 @@
-@extends('layouts.materialize')
+@extends('layouts.pre-home')
 @section('title-page')
 <title>D-Event</title>
 @endsection

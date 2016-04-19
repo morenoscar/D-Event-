@@ -7,7 +7,7 @@ Password
 Confirmar Password
 Aceptar terminos y condiciones -->
 
-@extends('layouts.materialize')
+@extends('layouts.pre-home')
 
 @section('title-page')
 <title>Register</title>
@@ -23,20 +23,20 @@ Aceptar terminos y condiciones -->
 			{!! Form::text('name', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::text('email', null, array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
+			{!! Form::email('email_address', null , array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
 		</div>
 		<div class="input-field">
 			<!-- ACA TOCA CON COMBOBOX -->
-			{!! Form::text('date_birth', null, array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
+			{!! Form::text('date_birth', null, array('class'=>'form-control ', 'placeholder'=>'Date_Birth', 'required')) !!}
 		</div>
 		<div class="input-field">
 			{!! Form::text('username', null, array('class'=>'form-control ', 'placeholder'=>'Usuario', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::text('password', null, array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
+			{!! Form::password('password', array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::text('acanosequeva', null, array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
+			{!! Form::password('copypassword', array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
 		</div>
 		<div>
 			{!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
