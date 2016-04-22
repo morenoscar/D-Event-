@@ -6,5 +6,8 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
 <script type="text/javascript" src="http://localhost:8000/js/materialize.min.js"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
 <!-- CSS Principal -->
 <link href="http://localhost:8000/CSS/home.css" media="all" rel="stylesheet" type="text/css" />

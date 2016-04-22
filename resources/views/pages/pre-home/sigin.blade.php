@@ -1,5 +1,7 @@
 @extends('layouts.pre-home')
 
+<!-- ENTRAR A LA BD mysql -u root -p -->
+
 @section('title-page')
 <title>SigIn</title>
 @stop
@@ -22,10 +24,12 @@
 			{!! Form::close() !!}
 	</div>
 	<div class="bottom">
-		<div class="bottomRight">
+		<div class="bottomLeft">
 			<a href="#">Olvide mi contraseña</a>
 		</div>
-		¿No tienes cuenta? <a href="/register">Registrate</a>
+		<div class="bottomRight">
+			¿No tienes cuenta? <a href="/register">Registrate</a>
+		</div>
 	</div>
 </div>
 

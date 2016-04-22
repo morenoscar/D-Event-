@@ -12,11 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('/pages/home');
+    return view('/pages/pre-home/home');
 });
 
 Route::get('/sigin','SigInController@sigin');
 Route::get('/register','SigInController@register');
+
+Route::get('/home', function () {
+    return view('/pages/home/userHome');
+});
 
 /*
 |--------------------------------------------------------------------------
