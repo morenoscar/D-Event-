@@ -19,10 +19,10 @@
 		<div class="input-field">
 			{!! Form::email('correo', null , array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
 		</div>
-		<div class="input-field">
-			<!-- ACA TOCA CON COMBOBOX -->
+	<!--	<div class="input-field">
+			 ACA TOCA CON COMBOBOX
 			{!! Form::text('fechaNacimiento', null, array('class'=>'form-control ', 'placeholder'=>'Date_Birth')) !!}
-		</div>
+		</div>-->
 		<div class="input-field">
 			{!! Form::text('username', null, array('class'=>'form-control ', 'placeholder'=>'Usuario', 'required')) !!}
 		</div>

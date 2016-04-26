@@ -12,25 +12,25 @@
 */
 
 Route::get('/', function () {
-    //return view('/pages/pre-home/home');
     return view('/pages/pre-home/home');
 });
 
-//Route::get('/sigin','SigInController@sigin');
-//Route::get('/register','SigInController@register');
-
-Route::get('/home', function () {
-    return view('/pages/home/userHome');
-});
-
+/*
+  | Route UsuarioController
+*/
+// route to show the register form
 Route::resource('/register','UsuarioController');
-
 // route to show the login form
 Route::get('/sigin', array('uses' => 'UsuarioController@showLogin'));
-
 // route to process the form
 Route::post('/sigin', array('uses' => 'UsuarioController@doLogin'));
+// route to show home for the username
+Route::get('/home/{currentUser}', array('uses' => 'UsuarioController@showHome'));
 
+/*
+  | Route EventoController
+*/
+Route::get('/home/{currentUser}/evento/{idEvento}', array('uses' => 'EventoController@showEvent'));
 /*
 |--------------------------------------------------------------------------
 | Application Routes

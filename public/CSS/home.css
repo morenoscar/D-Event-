@@ -40,7 +40,7 @@ STYLE DEL SIDEBAR
 
 .sidebar{
   width: 20%;
-  background-color: red;
+  background-color: #F32837;
   text-align: center;
   color: white;
 }
@@ -76,12 +76,43 @@ STYLE DEL MAIN-CONTENT
   margin-right: 20%;
 }
 
+.group-block{
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+
+}
+
 .block{
-  padding: 15px 15px;
+  margin-top: 15px;
   border-radius: 15px;
-  background: gray;
+  background: #615454;
   width: 200px;
   height: 200px;
+}
+
+.block i{
+  text-align: center;
+  font-size: 120px;
+}
+
+.block .name-block{
+  color: white;
+}
+
+.block .image-block img{
+  border-radius: 15px;
+  width: 100%;
+}
+
+.block .bottom-block .name-block{
+  float: left;
+}
+
+.block .bottom-block .button-block{
+  float: right;
 }
 
 /*
@@ -96,6 +127,16 @@ STYLE DEL SEARCH BAR
 
 .elquequiera #search-bar input{
   width: 300px;
+}
+
+/*
+---
+STYLE DE LA ETIQUETA a
+---
+*/
+
+a{
+  color: white;
 }
 
 

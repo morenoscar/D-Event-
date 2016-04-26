@@ -16,9 +16,11 @@ use App\Usuario;
 // Auth
 use Auth;
 
+use DB;
+
 class UsuarioController extends Controller
 {
-  protected $rules = [
+  protected $rulesRegister = [
     'apellido' => ['required'],
     'correo' => ['required','unique:usuario,correo','email'],
     'nombre' => ['required'],
@@ -43,16 +45,6 @@ class UsuarioController extends Controller
   }
 
   /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-
-  }
-
-  /**
   * Store a newly created resource in storage.
   *
   * @param  \Illuminate\Http\Request  $request
@@ -60,28 +52,23 @@ class UsuarioController extends Controller
   */
   public function store(Request $request)
   {
-    $this->validate($request, $this->rules, $this->messages);
+    $this->validate($request, $this->rulesRegister, $this->messages);
     Usuario::create(array(
-        'nombre' => Input::get('username'),
-        'apellido' => Input::get('apellido'),
-        'correo' => Input::get('correo'),
-        'fechaNacimiento' => Input::get('fechaNacimiento'),
-        'username' => Input::get('username'),
-        'password' => Hash::make(Input::get('password')),
+      'nombre' => Input::get('nombre'),
+      'apellido' => Input::get('apellido'),
+      'correo' => Input::get('correo'),
+      //  'fechaNacimiento' => Input::get('fechaNacimiento'),
+      'username' => Input::get('username'),
+      'password' => Hash::make(Input::get('password')),
     ));
     return redirect('/sigin');
 
   }
 
-  /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function show($id)
+  public function showHome($user)
   {
-
+    $currentUser = Usuario::find($user);
+    return view('pages.home.userHome')->with('currentUser',$currentUser);
   }
 
   public function showLogin()
@@ -93,52 +80,19 @@ class UsuarioController extends Controller
   {
 
     // FALTA COLOCAR REGLAS
-     $userdata = array(
-       'username' => Input::get('username'),
-       'password' => Input::get('password'),
-     );
-     echo Input::get('username');
-     echo Input::get('password');
-      if (Auth::attempt($userdata))
-      {
-        return redirect('/home');
-      }
-      else {
-        echo 'No se ha podido iniciar sesión';
-      }
-}
+    $userdata = array(
+      'username' => Input::get('username'),
+      'password' => Input::get('password'),
+    );
+    if (Auth::attempt($userdata))
+    {
+      return redirect('/home/'.Input::get('username'));
+    }
+    else {
+      echo 'No se ha podido iniciar sesión';
+    }
+  }
 
-/**
-* Show the form for editing the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function edit($id)
-{
-  //
-}
 
-/**
-* Update the specified resource in storage.
-*
-* @param  \Illuminate\Http\Request  $request
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function update(Request $request, $id)
-{
-  //
-}
 
-/**
-* Remove the specified resource from storage.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function destroy($id)
-{
-  //
-}
 }
