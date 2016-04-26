@@ -1,25 +1,28 @@
-@extends('layouts.pre-home1')
+@extends('layouts.home')
 
 @section('title-page')
-<title>Register</title>
+<title>Crear Evento</title>
 @stop
 
 @section('content')
-<div class="main-content1">
-
 
 <div class="cover">
 	<div class="bloque">
 		<h1>D-Event</h1>
-		{!! Form::open(['url' => 'register']) !!}
+		{!! Form::open(['url' => 'crearEvento']) !!}
 		<div class="input-field">
 			{!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::text('apellido', null, array('class'=>'form-control ','placeholder'=>'Apellido', 'required')) !!}
+			{!! Form::text('descripcion', null, array('class'=>'form-control ','placeholder'=>'Apellido', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::email('correo', null , array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
+			<!--FECHA INICIO-->
+      <!-- HORA INICIO -->
+		</div>
+    <div class="input-field">
+			<!--FECHA INICIO-->
+      <!-- HORA FIN -->
 		</div>
 	<!--	<div class="input-field">
 			 ACA TOCA CON COMBOBOX
@@ -41,5 +44,6 @@
 		{!! Form::close() !!}
 	</div>
 </div>
-</div>
+
+
 @stop

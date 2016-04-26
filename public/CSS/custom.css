@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:700);
+
+.title {
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+}
+
+h1.title {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+pre {
+    background: #212121;
+    color: white;
+}
+
+
+line {
+    stroke-width: 2px;
+}
+
+.graph {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 525px;
+}

@@ -30,7 +30,14 @@ Route::get('/home/{currentUser}', array('uses' => 'UsuarioController@showHome'))
 /*
   | Route EventoController
 */
-Route::get('/home/{currentUser}/evento/{idEvento}', array('uses' => 'EventoController@showEvent'));
+Route::get('/home/{currentUser}/evento/{currentEvent}', array('uses' => 'EventoController@showEvent'));
+
+/*
+  Desplegar image
+*/
+Route::get('/showImage.php', function () {
+    return view('/pages/home/showImage');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes

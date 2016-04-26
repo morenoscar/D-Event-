@@ -15,7 +15,7 @@
 
 <div class="group-block">
   <div class="block">
-    <center><button><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <center><i class="fa fa-plus" aria-hidden="true"></i>
       <div class="name-block">
         <p>
           Crear nuevo evento
@@ -27,7 +27,8 @@
   <div class="block">
     <div class="image-block">
       <!--<img src="http://img0.es.ndsstatic.com/wallpapers/78642d8563a081c487d659c5038c932b_large.jpeg">-->
-      <img src="data:image/jpg;base64,'.base64_encode($evento->foto) .'" />
+      <!--<img src="data:image/jpg;base64,'.base64_encode($evento->foto) .'" />-->
+       <img src="/showImage.php?id={!! $evento->idEvento !!}" />
     </div>
     <div class="bottom-block">
       <div class="name-block">
@@ -36,7 +37,8 @@
         </p>
       </div>
       <div class="button-block">
-        <button type="button" name="button">Abrir</button>
+        <!--<button type="button" name="button">Abrir</button>-->
+        <a class="btn" href="/home/{!! $currentUser->username !!}/evento/{!! $evento->idEvento !!}">Abrir</a>
       </div>
     </div>
   </div>

@@ -3,8 +3,21 @@ header{
   position: fixed;
 }
 
+header nav{
+  background-color: #650707;
+}
+
 .main-content{
   background: url(http://localhost:8000/img/pre-home.png) no-repeat center center fixed;
+	background-size: cover;
+  min-height: 100vh;
+  display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.main-content1{
+  background: url(http://localhost:8000/img/home.png) no-repeat center center fixed;
 	background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -24,6 +37,8 @@ header{
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+  opacity: 0.9;
+  filter: alpha(opacity=50);
   flex-direction: column;
   margin: 60px 0px 60px 0px;
 }
@@ -76,9 +91,4 @@ a{
   bottom: 0;
   background: black;
   color: white;
-}
-
-.footer:hover {
-  background: white;
-  color: black;
 }

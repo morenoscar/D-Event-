@@ -1,6 +1,4 @@
-@extends('layouts.pre-home')
-
-<!-- ENTRAR A LA BD mysql -u root -p -->
+@extends('layouts.pre-home1')
 
 @section('title-page')
 <title>SigIn</title>
