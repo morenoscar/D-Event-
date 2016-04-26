@@ -1,12 +1,3 @@
-<!--
-Nombre
-Correo
-Fecha de Nacimiento
-Username
-Password
-Confirmar Password
-Aceptar terminos y condiciones -->
-
 @extends('layouts.pre-home')
 
 @section('title-page')
@@ -18,16 +9,19 @@ Aceptar terminos y condiciones -->
 <div class="cover">
 	<div class="bloque">
 		<h1>D-Event</h1>
-		{!! Form::open(['url' => 'sigin']) !!}
+		{!! Form::open(['url' => 'register']) !!}
 		<div class="input-field">
-			{!! Form::text('name', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
+			{!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::email('email_address', null , array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
+			{!! Form::text('apellido', null, array('class'=>'form-control ','placeholder'=>'Apellido', 'required')) !!}
+		</div>
+		<div class="input-field">
+			{!! Form::email('correo', null , array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
 		</div>
 		<div class="input-field">
 			<!-- ACA TOCA CON COMBOBOX -->
-			{!! Form::text('date_birth', null, array('class'=>'form-control ', 'placeholder'=>'Date_Birth', 'required')) !!}
+			{!! Form::text('fechaNacimiento', null, array('class'=>'form-control ', 'placeholder'=>'Date_Birth')) !!}
 		</div>
 		<div class="input-field">
 			{!! Form::text('username', null, array('class'=>'form-control ', 'placeholder'=>'Usuario', 'required')) !!}
@@ -36,7 +30,8 @@ Aceptar terminos y condiciones -->
 			{!! Form::password('password', array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
 		</div>
 		<div class="input-field">
-			{!! Form::password('copypassword', array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
+			<input type="password" class= "form-control" placeholder="Contraseña" name="copypassword" required>
+			<!--{!! Form::password('copypassword', array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}-->
 		</div>
 		<div>
 			{!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
@@ -44,4 +39,5 @@ Aceptar terminos y condiciones -->
 		{!! Form::close() !!}
 	</div>
 </div>
+
 @stop

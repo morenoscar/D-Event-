@@ -12,15 +12,24 @@
 */
 
 Route::get('/', function () {
+    //return view('/pages/pre-home/home');
     return view('/pages/pre-home/home');
 });
 
-Route::get('/sigin','SigInController@sigin');
-Route::get('/register','SigInController@register');
+//Route::get('/sigin','SigInController@sigin');
+//Route::get('/register','SigInController@register');
 
 Route::get('/home', function () {
     return view('/pages/home/userHome');
 });
+
+Route::resource('/register','UsuarioController');
+
+// route to show the login form
+Route::get('/sigin', array('uses' => 'UsuarioController@showLogin'));
+
+// route to process the form
+Route::post('/sigin', array('uses' => 'UsuarioController@doLogin'));
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +45,7 @@ Route::get('/home', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+/*
+Route::auth();
+
+Route::get('/home', 'HomeController@index');*/
