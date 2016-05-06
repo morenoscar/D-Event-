@@ -7,8 +7,11 @@ header nav{
   background-color: #650707;
 }
 
+.error ul{
+}
+
 .main-content{
-  background: url(http://localhost:8000/img/pre-home.png) no-repeat center center fixed;
+  background: url(../img/pre-home.png) no-repeat center center fixed;
 	background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -16,8 +19,8 @@ header nav{
 	align-items: center;
 }
 
-.main-content1{
-  background: url(http://localhost:8000/img/home.png) no-repeat center center fixed;
+.main-contentRS{
+  background: url(../img/home.png) no-repeat center center fixed;
 	background-size: cover;
   min-height: 100vh;
   display: flex;

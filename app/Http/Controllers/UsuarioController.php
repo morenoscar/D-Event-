@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -26,10 +27,12 @@ class UsuarioController extends Controller
     'nombre' => ['required'],
     'password' => ['required'],
     'username' => ['required','unique:usuario,username'],
+    'copypassword' => ['required','same:password']
   ];
   protected $messages = array(
     'required' => 'El campo :attribute es obligatorio',
-    'unique' => 'El campo :attribute ya ha sido tomado',
+    'unique' => 'Ese :attribute ya ha sido tomado',
+    'same' => 'Las contraseñas son diferentes'
   );
 
 
@@ -52,17 +55,23 @@ class UsuarioController extends Controller
   */
   public function store(Request $request)
   {
-    $this->validate($request, $this->rulesRegister, $this->messages);
-    Usuario::create(array(
-      'nombre' => Input::get('nombre'),
-      'apellido' => Input::get('apellido'),
-      'correo' => Input::get('correo'),
-      //  'fechaNacimiento' => Input::get('fechaNacimiento'),
-      'username' => Input::get('username'),
-      'password' => Hash::make(Input::get('password')),
-    ));
-    return redirect('/sigin');
+    //if(Input::get('password')==Input::get('copypassword')){
+      $this->validate($request, $this->rulesRegister, $this->messages);
 
+      Usuario::create(array(
+        'nombre' => Input::get('nombre'),
+        'apellido' => Input::get('apellido'),
+        'correo' => Input::get('correo'),
+        'username' => Input::get('username'),
+        'password' => Hash::make(Input::get('password')),
+      ));
+      return redirect('/sigin');
+  //  }
+  /*
+    else{
+      $errors = new MessageBag(['copypassword' => ['Las cotraseñas no son iguales']]);
+      return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
+    }*/
   }
 
   public function showHome($user)
@@ -78,7 +87,6 @@ class UsuarioController extends Controller
 
   public function doLogin()
   {
-
     // FALTA COLOCAR REGLAS
     $userdata = array(
       'username' => Input::get('username'),
@@ -89,10 +97,11 @@ class UsuarioController extends Controller
       return redirect('/home/'.Input::get('username'));
     }
     else {
-      echo 'No se ha podido iniciar sesión';
+      $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+      return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
+      //echo 'No se ha podido iniciar sesión';
+      //return back()->withInput();
+      //return back()->withErrors($errors)->withInput(Input::except('password'));
     }
   }
-
-
-
 }

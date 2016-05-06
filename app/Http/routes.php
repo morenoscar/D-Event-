@@ -18,12 +18,8 @@ Route::get('/', function () {
 /*
   | Route UsuarioController
 */
-// route to show the register form
-Route::resource('/register','UsuarioController');
-// route to show the login form
-Route::get('/sigin', array('uses' => 'UsuarioController@showLogin'));
-// route to process the form
-Route::post('/sigin', array('uses' => 'UsuarioController@doLogin'));
+
+
 // route to show home for the username
 Route::get('/home/{currentUser}', array('uses' => 'UsuarioController@showHome'));
 
@@ -51,6 +47,12 @@ Route::get('/showImage.php', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+    // route to show the login form
+    Route::get('/sigin', array('uses' => 'UsuarioController@showLogin'));
+    // route to process the form
+    Route::post('/sigin', array('uses' => 'UsuarioController@doLogin'));
+    // route to show the register form
+    Route::resource('/register','UsuarioController');
 });
 /*
 Route::auth();

@@ -9,9 +9,7 @@
 </header>
 <body>
 
-  <div class="main-content">
     @yield('content')
-  </div>
 
   <footer class="footer">
     @include('includes.footer')
