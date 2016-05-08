@@ -19,10 +19,6 @@
 			<div class="input-field">
 				{!! Form::email('correo', null , array('class'=>'form-control ', 'placeholder'=>'example@example.com', 'required')) !!}
 			</div>
-			<!--	<div class="input-field">
-			ACA TOCA CON COMBOBOX
-			{!! Form::text('fechaNacimiento', null, array('class'=>'form-control ', 'placeholder'=>'Date_Birth')) !!}
-		</div>-->
 		<div class="input-field">
 			{!! Form::text('username', null, array('class'=>'form-control ', 'placeholder'=>'Usuario', 'required')) !!}
 		</div>
@@ -38,10 +34,10 @@
 			{!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
 		</div>
 		@if (count($errors) > 0)
-		<div class="alert alert-danger">
+		<div class="error">
 			<ul>
 				@foreach ($errors->all() as $error)
-				<li>*{{ $error }}</li>
+				<li>{{ $error }}</li>
 				@endforeach
 			</ul>
 		</div>
