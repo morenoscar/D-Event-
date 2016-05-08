@@ -1,7 +1,7 @@
 @extends('layouts.pre-home')
 
 @section('title-page')
-<title>SigIn</title>
+<title>SignIn</title>
 @stop
 
 @section('content')
@@ -9,7 +9,7 @@
 	<div class="cover" >
 		<div class="bloque">
 			<h1>D-Event</h1>
-			{!! Form::open(['url' => 'sigin']) !!}
+			{!! Form::open(['url' => 'signin']) !!}
 			<div class="input-field">
 				{!! Form::text('username', null, array('class'=>'form-control ','placeholder'=>'Username', 'required')) !!}
 			</div>
@@ -20,7 +20,7 @@
 				{!! Form::button('Iniciar Sesion', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
 			</div>
 			@if ($errors->has('password'))
-			<div class="alert alert-danger error">
+			<div class="error">
 				<ul>
 					@foreach($errors->get('password') as $error )
 					<li>{{ $error }}</br></li>

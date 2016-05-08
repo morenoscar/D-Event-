@@ -7,9 +7,6 @@ header nav{
   background-color: #650707;
 }
 
-.error ul{
-}
-
 .main-content{
   background: url(../img/pre-home.png) no-repeat center center fixed;
 	background-size: cover;
@@ -94,4 +91,10 @@ a{
   bottom: 0;
   background: black;
   color: white;
+}
+.error{
+  width: 50%;
+  margin: auto;
+  color: #fff;
+  background-color:#fa6a6a;
 }

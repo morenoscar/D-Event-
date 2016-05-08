@@ -22,8 +22,8 @@ class CreateUsuarioTable extends Migration
           $table->string('nombre')->default('');
           $table->string('password')->default('');
           $table->string('username')->default('');
-
           $table->primary('username');
+          $table->string('remember_token', 100) -> nullable();
       });
   }
 

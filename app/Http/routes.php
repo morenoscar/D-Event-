@@ -12,28 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('/pages/pre-home/home');
+  return view('/pages/pre-home/home');
 });
 
 /*
-  | Route UsuarioController
-*/
-
-
-// route to show home for the username
-Route::get('/home/{currentUser}', array('uses' => 'UsuarioController@showHome'));
-
-/*
-  | Route EventoController
+| Route EventoController
 */
 Route::get('/home/{currentUser}/evento/{currentEvent}', array('uses' => 'EventoController@showEvent'));
 
 /*
-  Desplegar image
+Desplegar image
 */
 Route::get('/showImage.php', function () {
-    return view('/pages/home/showImage');
+  return view('/pages/home/showImage');
 });
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -46,15 +39,18 @@ Route::get('/showImage.php', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
-    // route to show the login form
-    Route::get('/sigin', array('uses' => 'UsuarioController@showLogin'));
-    // route to process the form
-    Route::post('/sigin', array('uses' => 'UsuarioController@doLogin'));
-    // route to show the register form
-    Route::resource('/register','UsuarioController');
-});
-/*
-Route::auth();
+  /*
+  | Route UsuarioController
+  */
+  // route to logout an user
+  Route::get('/logout', ['middleware' => 'auth','uses'=>'UsuarioController@doLogout']);
+  // route to show home for the username
+  Route::get('/home/{currentUser}',['middleware' => 'auth','uses' => 'UsuarioController@showHome']);
+  // route to show the login form
+  Route::get('/signin',['middleware' => 'guest','uses' => 'UsuarioController@showLogin']);
+  // route to process the form
+  Route::post('/signin',['uses' => 'UsuarioController@doLogin']);
+  // route to show the register form
+  Route::resource('/register','UsuarioController');
 
-Route::get('/home', 'HomeController@index');*/
+});

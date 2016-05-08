@@ -28,7 +28,7 @@ class Usuario extends Authenticatable //extends Model
   * @var array
   */
   protected $hidden = [
-    'password',
+    'password','remember_token',
   ];
 
   /**
