@@ -15,7 +15,7 @@ class CreateFiguraTable extends Migration
       Schema::create('figura', function(Blueprint $table)
       {
         $table->integer('idFigura');
-        $table->binary('imagen');
+        $table->string('imagen');
 
         $table->primary('idFigura');
       });

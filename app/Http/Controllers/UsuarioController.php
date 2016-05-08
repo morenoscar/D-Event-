@@ -55,7 +55,6 @@ class UsuarioController extends Controller
   */
   public function store(Request $request)
   {
-    //if(Input::get('password')==Input::get('copypassword')){
       $this->validate($request, $this->rulesRegister, $this->messages);
 
       Usuario::create(array(
@@ -66,12 +65,6 @@ class UsuarioController extends Controller
         'password' => Hash::make(Input::get('password')),
       ));
       return redirect('/sigin');
-  //  }
-  /*
-    else{
-      $errors = new MessageBag(['copypassword' => ['Las cotraseñas no son iguales']]);
-      return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
-    }*/
   }
 
   public function showHome($user)
@@ -87,7 +80,6 @@ class UsuarioController extends Controller
 
   public function doLogin()
   {
-    // FALTA COLOCAR REGLAS
     $userdata = array(
       'username' => Input::get('username'),
       'password' => Input::get('password'),

@@ -26,8 +26,6 @@
   @foreach ($currentUser->eventos as $evento)
   <div class="block">
     <div class="image-block">
-      <!--<img src="http://img0.es.ndsstatic.com/wallpapers/78642d8563a081c487d659c5038c932b_large.jpeg">-->
-      <!--<img src="data:image/jpg;base64,'.base64_encode($evento->foto) .'" />-->
        <img src="/showImage.php?id={!! $evento->idEvento !!}" />
     </div>
     <div class="bottom-block">
@@ -37,7 +35,6 @@
         </p>
       </div>
       <div class="button-block">
-        <!--<button type="button" name="button">Abrir</button>-->
         <a class="btn" href="/home/{!! $currentUser->username !!}/evento/{!! $evento->idEvento !!}">Abrir</a>
       </div>
     </div>

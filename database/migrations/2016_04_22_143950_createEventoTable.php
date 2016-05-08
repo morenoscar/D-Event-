@@ -22,6 +22,7 @@ class CreateEventoTable extends Migration
           $table->time('horaInicio');
           $table->integer('idEvento');
           $table->string('nombre')->default('');
+          $table->string('foto')->default('');
           $table->integer('presupuesto')->default(0);
           $table->integer('TipoEvento_idTipoEvento');
           $table->string('direccion')->default('');

@@ -1,7 +1,8 @@
 <!-- CAMBIAR EL NOMBRE DE ESA CLASE -->
 <div class="c">
   <div>
-    <img id="foto" src="http://img0.es.ndsstatic.com/wallpapers/78642d8563a081c487d659c5038c932b_large.jpeg">
+    <img id="foto" src="{!! $currentUser->foto !!}">
+    <!--<img id="foto" src="/img/profile/default.png">-->
   </div>
   <div class="userName">
     {!! $currentUser->username !!} <hr>

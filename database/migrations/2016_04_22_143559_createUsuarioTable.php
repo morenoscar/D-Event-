@@ -18,7 +18,7 @@ class CreateUsuarioTable extends Migration
           $table->string('correo')->unique();
           $table->string('direccion')->default('');
           $table->date('fechaNacimiento');
-          $table->binary('foto');
+          $table->string('foto')->default('/img/profile/default.png');
           $table->string('nombre')->default('');
           $table->string('password')->default('');
           $table->string('username')->default('');

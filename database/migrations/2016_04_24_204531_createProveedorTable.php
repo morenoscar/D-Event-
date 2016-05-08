@@ -17,7 +17,7 @@ class CreateProveedorTable extends Migration
         $table->integer('idProveedor');
         $table->string('nombre')->default('');
         $table->string('descripcion')->default('');
-        $table->binary('foto');
+        $table->string('foto');
         $table->string('direccion')->default('');
         $table->string('correoElectronico')->default('');
         $table->string('telefono')->default('');
