@@ -39,5 +39,11 @@ class Usuario extends Authenticatable //extends Model
     return $this->belongsToMany('App\Evento', 'permisosEvento', 'Usuario_username', 'Evento_idEvento')->withPivot('tipoUsuario');
   }
 
+  public function agregarPermisosEvento($idEvento)
+  {
+    // PARA LLENAR VARIOS ES CON sync
+    $this->eventos()->attach($idEvento,array('tipoUsuario' => 'CREADOR'));
+  }
+
 
 }

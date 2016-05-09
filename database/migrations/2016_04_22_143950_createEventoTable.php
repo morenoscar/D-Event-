@@ -20,7 +20,7 @@ class CreateEventoTable extends Migration
           $table->date('fechaInicio');
           $table->time('horaFin');
           $table->time('horaInicio');
-          $table->integer('idEvento');
+          $table->integer('idEvento',true);
           $table->string('nombre')->default('');
           $table->string('foto')->default('');
           $table->integer('presupuesto')->default(0);
@@ -28,7 +28,6 @@ class CreateEventoTable extends Migration
           $table->string('direccion')->default('');
           $table->date('recordatorio');
 
-          $table->primary('idEvento');
       });
 
       Schema::table('evento', function($table)

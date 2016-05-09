@@ -53,4 +53,6 @@ Route::group(['middleware' => ['web']], function () {
   // route to show the register form
   Route::resource('/register','UsuarioController');
 
+  Route::post('/home/{currentUser}','EventoController@store');
+
 });

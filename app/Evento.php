@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model
 {
+  public $timestamps = false;
+  public $incrementing = true;
   protected $table = 'evento';
-  protected $fillable = ['descripcion','estado','fechaFin','fechaInicio','horaFin','horaInicio','nombre','presupuesto','direccion','recordatorio'];
+  // BORRAR TipoEvento_idTipoEvento
+  protected $fillable = ['descripcion','estado','fechaFin','fechaInicio','horaFin','horaInicio','nombre','presupuesto','direccion','recordatorio','TipoEvento_idTipoEvento'];
   protected $primaryKey = 'idEvento';
 
   /**

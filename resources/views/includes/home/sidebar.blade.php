@@ -9,11 +9,11 @@
   </div>
 </div>
 <div class="list">
-  <a href="/historial"><p><li>Historial</li></p></a>
-  <a href="/eventos"><p><li>Eventos</li></p></a>
-  <a href="/amigos"><p><li>Amigos</li></p></a>
+  <a href="/historial"><p><li>Historial</li></a>
+  <a href="/eventos"><p><li>Eventos</li></a>
+  <a href="/amigos"><p><li>Amigos</li></a>
 </div>
-<div class="">
+<div class="list">
   <hr>
   <a href="/amigos">Adquirir Premium</a>
 </div>

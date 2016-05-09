@@ -14,13 +14,12 @@ class CreateToDoTable extends Migration
     {
       Schema::create('toDo', function(Blueprint $table)
       {
-        $table->integer('idItem');
+        $table->integer('idItem',true);
         $table->string('nota')->default('');
         $table->date('fecha');
         $table->string('estado')->default('');
         $table->integer('Evento_idEvento');
 
-        $table->primary('idItem');
       });
 
       Schema::table('toDo', function($table)

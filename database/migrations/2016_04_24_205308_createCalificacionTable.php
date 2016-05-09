@@ -15,11 +15,10 @@ class CreateCalificacionTable extends Migration
       Schema::create('calificacion', function(Blueprint $table)
       {
         $table->integer('Proveedor_idProveedor');
-        $table->integer('idCalificacion');
+        $table->integer('idCalificacion',true);
         $table->string('comentario')->default('');
         $table->integer('puntaje')->default('-1');
 
-        $table->primary('idCalificacion');
       });
 
       Schema::table('calificacion', function($table)

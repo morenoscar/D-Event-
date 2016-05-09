@@ -16,24 +16,22 @@ class CreateInvitadoTable extends Migration
       {
         $table->string('correo')->unique();
         $table->string('estado')->default('');
-        $table->integer('idInvitado');
+        $table->integer('idInvitado',true);
         $table->string('nombre')->default('');
         $table->integer('Objeto_idOBjeto');
         $table->integer('RegaloAporte_idRegaloAporte');
         $table->integer('Evento_idEvento');
 
-        $table->primary('idInvitado');
       });
 
       Schema::create('regaloAporte', function(Blueprint $table)
       {
         $table->string('descripcion')->default('');
-        $table->integer('idRegaloAporte');
+        $table->integer('idRegaloAporte',true);
         $table->string('nombreRegaloAporte')->default('');
         $table->integer('Evento_idEvento');
         $table->integer('Invitado_idInvitado');
 
-        $table->primary('idRegaloAporte');
       });
 
       Schema::table('invitado', function($table)

@@ -64,11 +64,7 @@ class UsuarioController extends Controller
         'username' => Input::get('username'),
         'password' => Hash::make(Input::get('password')),
       ));
-<<<<<<< HEAD
-      return redirect('/sigin');
-=======
       return redirect('/signin');
->>>>>>> 5c04f6f8ef3a326f1b180b72036683338b6476eb
   }
 
   public function showHome($user)

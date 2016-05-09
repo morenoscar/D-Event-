@@ -5,7 +5,8 @@ STYLE DEL HEADER
 */
 
 header{
-  border-bottom: 2px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  height: 50px;
 }
 
 header nav{
@@ -16,6 +17,11 @@ header nav .fa {
   color: black;
   font-size: 40px;
 }
+
+nav #foto{
+  width: 20%;
+}
+
 
 /*
 ---
@@ -129,11 +135,15 @@ STYLE DEL SEARCH BAR
 
 /*
 ---
-STYLE DE LA ETIQUETA a
+STYLE DE LOS DIFERENTES LINKS
 ---
 */
 
-a{
+.list a{
+  color: white;
+}
+
+.fa-plus{
   color: white;
 }
 
