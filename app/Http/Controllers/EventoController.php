@@ -38,7 +38,8 @@ class EventoController extends Controller
   public function showEvent($username,$idEvento)
   {
     $currentEvent = Evento::find($idEvento);
-    return view('pages.home.evento')->with('evento',$currentEvent);
+    $currentUser=Usuario::find($username);
+    return view('pages.home.evento',compact('currentEvent','currentUser'));
   }
 
   /**

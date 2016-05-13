@@ -5,23 +5,97 @@ STYLE DEL HEADER
 */
 
 header{
-  border-bottom: 1px solid lightgray;
-  height: 50px;
+border-bottom: 5px solid lightgray;
+height: 80px;
+}
+/*
+header div, header nav{
+  height: 100%;
+}*/
+header nav{
+  height: 100%;
+}
+.contLogo{
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+.botones{
+  height: 100%;
+  width: 50%;
+  float: right;
+}
+.logo{
+  height:100%;
+  max-width: 100%;
+}
+header ul{
+  display: block;
+  height: 100%;
+  margin: 0;
+}
+.botones ul li{
+  display: inline-block;
+  height: 100%;
+  margin-right: 2%;
+}
+header .iconos{
+  position: relative;
+  bottom: 15px;
+}
+.miniFoto{
+  height: 90%;
+  border: 1px solid lightgray;
+  display: block;
+  margin-top: 5%;
+}
+header .fa{
+  max-height: 100%;
+  font-size: 60px;
+  color: black;
+}
+
+
+
+/*
+header nav.navbar.navbar-default{
+margin: 0px 0px 0px 0px;
+height: 100%;
+  background-color: #fff;
+}
+
+div.container-fluid{
+height: 100%;
+}
+
+header nav div div.navbar-header{
+width: 50%;
 }
 
 header nav{
-  background-color: white;
+background-color: white;
 }
 
 header nav .fa {
-  color: black;
-  font-size: 40px;
+color: black;
+font-size: 60px;
+box-sizing: border-box;
 }
-
-nav #foto{
-  width: 20%;
+header .logo{
+width: 40%;
 }
-
+header a.navbar-brand{
+padding-top: 10px;
+}
+header .miniFoto{
+width: 30%;
+border: 1px solid lightgray;
+}
+header .navbar-nav li a {
+padding: 0px 0px 0px 0px;
+margin-top: 20px;
+margin-right: 30px;
+}
 
 /*
 ---
@@ -30,10 +104,10 @@ STYLE DEL CONTENT
 */
 
 .content{
-  display: -webkit-flex;
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
+display: -webkit-flex;
+display: flex;
+min-height: 100vh;
+width: 100%;
 }
 
 /*
@@ -43,20 +117,76 @@ STYLE DEL SIDEBAR
 */
 
 .sidebar{
-  width: 20%;
-  background-color: #F32837;
-  text-align: center;
-  color: white;
+font-weight: bold;
+width: 30%;
+background-color: #F32837;
+text-align: center;
+color: white;
+border-right: 5px solid lightgray;
 }
 
-.sidebar .c #foto{
-  border-radius: 15px;
-  margin-top: 100px;
-  width: 80%;
+.sidebar .sbSecondContainer{
+  margin-bottom: 20px;
+}
+.sidebar .sbSecondContainer #foto{
+border-radius: 15px;
+margin-top: 100px;
+width: 100%;
+}
+.sbPrincipalContainer{
+padding-left: 18%;
+padding-right: 18%;
+}
+.sidebar .list {
+align-items: center;
+align-content: center;
+}
+.sidebar .list a{
+width: 60%;
+margin-left: 20%;
+display: block;
+font-size: 20px;
+font-weight: lighter;
+border: 1px solid #fff;
+border-radius: 5px;
+}
+.sidebar .list a:hover{
+  color: inherit;
+  text-decoration: none;
+  background-color: #ff636f;
 }
 
-.sidebar .list{
-  list-style: none;
+.userName{
+font-size: 25px;
+margin-top: 10px;
+font-weight:  lighter;
+border-bottom: 1px solid #fff;
+}
+
+.sidebar ul{
+padding: 0;
+margin: 0;
+list-style: none;
+align-items: center;
+align-content: center;
+}
+
+.sidebar ul li{
+margin-bottom: 15px;
+}
+
+.sidebar .premium{
+border-top: 1px solid #fff;
+}
+
+.sidebar .premium a{
+margin-top: 10px;
+/*margin-left: 5%;*/
+display: block;
+font-size: 16px;
+font-weight: lighter;
+text-decoration: none;
+color: #f0ed0d;
 }
 
 /*
@@ -66,57 +196,111 @@ STYLE DEL MAIN-CONTENT
 */
 
 .main-content{
-  background-color: white;
-  width: 80%;
-  padding: 30px 30px;
+background-color: #EDEDED;
+width: 75%;
+padding: 50px 150px 50px 150px;
 }
 
-.elquequiera{
-  display: flex;
+.contentHeader{
+display: flex;
 }
 
-.elquequiera h3{
-  width: 300px;
-  margin-right: 20%;
+.contentHeader h3{
+width: 300px;
+margin-right: 10%;
+font-size: 30px;
+font-family: Verdana;
+margin-top: 25px;
+}
+
+.newEvent{
+font-weight: bold;
+font-size: 18px;
 }
 
 .group-block{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+align-content: flex-start;
+justify-content: space-between;
 }
 
 .block{
-  margin-top: 15px;
-  border-radius: 15px;
-  background: #615454;
-  width: 200px;
-  height: 200px;
+margin-top: 50px;
+border-radius: 15px;
+background: #a2a09d;
+color: white;
+width: 280px;
+height: 280px;
+-webkit-box-shadow: 5px 5px 24px 0px black;
+-moz-box-shadow: 5px 5px 24px 0px black;
+box-shadow: 5px 5px 24px 0px black;
+border: 1px solid grey;
+}
+
+.creatorBlock{
+border: 2px dashed lightgrey;
 }
 
 .block i{
-  text-align: center;
-  font-size: 120px;
-}
-
-.block{
-  color: white;
+padding-top: 24%;
+color: white;
+text-align: center;
+font-size: 100px;
+box-sizing: border-box;
 }
 
 .block .image-block img{
-  border-radius: 15px;
-  width: 100%;
+border-radius: 15px 15px 0px 0px;
+width: 100%;
+height: 100%;
+}
+.block .image-block{
+height: 84%;
+border-bottom: 1px solid grey;
 }
 
+.block .bottom-block{
+height: 16%;
+padding-left: 10px;
+padding-right: 10px;
+}
 .block .bottom-block .name-block{
-  float: left;
+float: left;
+font-weight: bold;
+font-style: Verdana;
+color: #000;
+margin-top: 10px;
+margin-left: 15px;
+overflow: hidden;
+}
+p{
+margin: 10px;
 }
 
 .block .bottom-block .button-block{
-  float: right;
+float: right;
+font-weight: bold;
+margin-top: 6px;
+margin-right: 15px;
+padding-top: 4px;
+padding-bottom: 4px;
+text-align: center;
+width: 28%;
+background-color: #73F451;
+display: block;
+border-radius: 5px;
+}
+
+.button{
+  display: block;
+  color: #fff;
+}
+
+.button:hover{
+  color: inherit;
+  text-decoration: none;
 }
 
 /*
@@ -125,12 +309,41 @@ STYLE DEL SEARCH BAR
 ---
 */
 
-.elquequiera #search-bar{
-  padding-top: 20px;
+#searchform{
+width: 400px;
+height:35px;
+padding: 2px;
+margin-top:30px;
+margin-right: 0px;
+background: #ccc;
+border-radius: 4px;
+}
+#searchform input {
+width: 85%;
+height: 100%;
+margin: 0;
+padding-left: 20px;
+float: left;
+border: 0;
+background: #eee;
+border-radius: 3px 0 0 3px;
+box-shadow: 0 1px 1px rgba(0,0,0,.4) inset;
+display: block;
+box-sizing: border-box;
 }
 
-.elquequiera #search-bar input{
-  width: 300px;
+#searchform button {
+position: relative;
+float: right;
+border: 0;
+cursor: pointer;
+width: 15%;
+height: 100%;
+font-size:15px;
+color: #fff;
+background: #438cdb;
+border-radius: 0 3px 3px 0;
+box-sizing: border-box;
 }
 
 /*
@@ -140,11 +353,11 @@ STYLE DE LOS DIFERENTES LINKS
 */
 
 .list a{
-  color: white;
+color: white;
 }
 
 .fa-plus{
-  color: white;
+color: white;
 }
 
 
@@ -155,7 +368,7 @@ STYLE DEL FOOTER
 */
 
 .footer{
-  width: 100%;
-  background: black;
-  color: white;
+width: 100%;
+background: black;
+color: white;
 }

@@ -1,19 +1,22 @@
 <!-- CAMBIAR EL NOMBRE DE ESA CLASE -->
-<div class="c">
+<div class="sbPrincipalContainer">
+
+<div class="sbSecondContainer">
   <div>
     <img id="foto" src="{!! $currentUser->foto !!}">
-    <!--<img id="foto" src="/img/profile/default.png">-->
   </div>
   <div class="userName">
-    {!! $currentUser->username !!} <hr>
+    {!! $currentUser->username !!}
   </div>
 </div>
 <div class="list">
-  <a href="/historial"><p><li>Historial</li></a>
-  <a href="/eventos"><p><li>Eventos</li></a>
-  <a href="/amigos"><p><li>Amigos</li></a>
+  <ul>
+  <li><a href="/eventos">Eventos</a><li>
+  <li><a href="/historial">Historial</a><li>
+  <li><a href="/amigos">Amigos</a><li>
+  </ul>
 </div>
-<div class="list">
-  <hr>
+<div class="premium">
   <a href="/amigos">Adquirir Premium</a>
+</div>
 </div>

@@ -30,18 +30,20 @@ END OF CSS AND JS OF DATE PICKER
 
 
 @section('content')
-<div class="elquequiera">
+<div class="contentHeader">
   <h3>Eventos</h3>
-  <div class="input-group" id="search-bar">
-    <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
-    <button type="button" name="button"><span class="fa fa-search" aria-hidden="true"></span></button>
-  </div>
+  <!--<div class="input-group" id="search-bar">-->
+  <form id="searchform" action="index.html" method="post">
+    <input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2">
+    <button type="submit" name="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+  </form>
+  <!--</div>-->
 </div>
 
 <div class="group-block">
-  <div class="block">
-    <center><a class="btn btn-link-1 launch-modal" href="#" data-modal-id="modal-login"><i class="fa fa-plus" aria-hidden="true"></i></a>
-      <div class="name-block">
+  <div class="block creatorBlock">
+    <center><a class="launch-modal" href="#" data-modal-id="modal-login"><i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+      <div class="newEvent">
         <p>
           Crear nuevo evento
         </p>
@@ -130,7 +132,7 @@ TERMINA EL FORMULARIO DE CREAR EVENTO
 @foreach ($currentUser->eventos as $evento)
 <div class="block">
   <div class="image-block">
-    <img src="/showImage.php?id={!! $evento->idEvento !!}" />
+    <img src="../{!! $evento->foto !!}"/>
   </div>
   <div class="bottom-block">
     <div class="name-block">
@@ -139,7 +141,7 @@ TERMINA EL FORMULARIO DE CREAR EVENTO
       </p>
     </div>
     <div class="button-block">
-      <a class="btn" href="/home/{!! $currentUser->username !!}/evento/{!! $evento->idEvento !!}">Abrir</a>
+      <a class="button" href="/home/{!! $currentUser->username !!}/evento/{!! $evento->idEvento !!}">Abrir</a>
     </div>
   </div>
 </div>

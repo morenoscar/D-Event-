@@ -23,9 +23,11 @@ Route::get('/home/{currentUser}/evento/{currentEvent}', array('uses' => 'EventoC
 /*
 Desplegar image
 */
+/*
 Route::get('/showImage.php', function () {
   return view('/pages/home/showImage');
 });
+*/
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +54,5 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('/signin',['uses' => 'UsuarioController@doLogin']);
   // route to show the register form
   Route::resource('/register','UsuarioController');
-
-  Route::post('/home/{currentUser}','EventoController@store');
-
+  Route::post('/home/{currentUser}',['middleware' => 'auth','EventoController@store']);
 });
