@@ -44,6 +44,9 @@ Route::group(['middleware' => ['web']], function () {
   /*
   | Route UsuarioController
   */
+  Route::get('/informacion', ['middleware' => 'auth','uses'=>'UsuarioController@showUser']);
+  Route::post('/informacion',['middleware' => 'auth','uses' => 'UsuarioController@edit']);
+  Route::post('/informacion/eliminar',['middleware' => 'auth','uses' => 'UsuarioController@delete']);
   // route to logout an user
   Route::get('/logout', ['middleware' => 'auth','uses'=>'UsuarioController@doLogout']);
   // route to show home for the username
@@ -54,5 +57,6 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('/signin',['uses' => 'UsuarioController@doLogin']);
   // route to show the register form
   Route::resource('/register','UsuarioController');
-  Route::post('/home/{currentUser}',['middleware' => 'auth','EventoController@store']);
+
+  Route::post('/home/{currentUser}',['middleware' => 'auth','uses' =>'EventoController@store']);
 });

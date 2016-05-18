@@ -33,78 +33,124 @@ class UsuarioController extends Controller
   );
   /*
   public function __construct(){
-    $this->middleware('auth');
-  }
- */
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
+  $this->middleware('auth');
+}
+*/
+/**
+* Display a listing of the resource.
+*
+* @return \Illuminate\Http\Response
+*/
 
-  public function index()
-  {
-    return view('pages.pre-home.register');
-  }
+public function index()
+{
+  return view('pages.pre-home.register');
+}
 
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request)
-  {
-      $this->validate($request, $this->rulesRegister, $this->messages);
+/**
+* Display a listing of the resource.
+*
+* @return \Illuminate\Http\Response
+*/
 
-      Usuario::create(array(
-        'nombre' => Input::get('nombre'),
-        'apellido' => Input::get('apellido'),
-        'correo' => Input::get('correo'),
-        'username' => Input::get('username'),
-        'password' => Hash::make(Input::get('password')),
-      ));
-      return redirect('/signin');
-  }
+public function showUser()
+{
+  return view('pages.home.userProfile')->with('currentUser',Auth::user());
+}
 
-  public function showHome($user)
-  {
-    $currentUser = Usuario::find($user);
-    if(is_null($currentUser)){
-      return redirect('/signin');
-    }
-    if(Auth::user()->username == $currentUser->username){
-      return view('pages.home.userHome')->with('currentUser',$currentUser);
-    }
-    else{
-      return redirect('/signin');
-    }
-  }
+/**
+* Store a newly created resource in storage.
+*
+* @param  \Illuminate\Http\Request  $request
+* @return \Illuminate\Http\Response
+*/
+public function store(Request $request)
+{
+  $this->validate($request, $this->rulesRegister, $this->messages);
 
-  public function showLogin()
-  {
-    return view('pages.pre-home.signin');
-  }
+  Usuario::create(array(
+    'nombre' => Input::get('nombre'),
+    'apellido' => Input::get('apellido'),
+    'correo' => Input::get('correo'),
+    'username' => Input::get('username'),
+    'password' => Hash::make(Input::get('password')),
+  ));
+  return redirect('/signin');
+}
 
-  public function doLogin()
-  {
-    $userdata = array(
-      'username' => Input::get('username'),
-      'password' => Input::get('password'),
-    );
-    if (Auth::attempt($userdata))
-    {
-      return redirect('/home/'.Input::get('username'));
-    }
-    else {
-      $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
-      return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
-    }
-  }
-  public function doLogout()
-  {
-    Auth::logout();
-    Session::flush();
+public function showHome($user)
+{
+  $currentUser = Usuario::find($user);
+  if(is_null($currentUser)){
     return redirect('/signin');
   }
+  if(Auth::user()->username == $currentUser->username){
+    return view('pages.home.userHome')->with('currentUser',$currentUser);
+  }
+  else{
+    return redirect('/signin');
+  }
+}
+
+public function showLogin()
+{
+  return view('pages.pre-home.signin');
+}
+
+public function doLogin()
+{
+  $userdata = array(
+    'username' => Input::get('username'),
+    'password' => Input::get('password'),
+  );
+  if (Auth::attempt($userdata))
+  {
+    return redirect('/home/'.Input::get('username'));
+  }
+  else {
+    $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+    return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
+  }
+}
+
+public function edit()
+{
+  $usuario = Auth::user();
+  $nombre = Input::get('nombre');
+  $apellido = Input::get('apellido');
+  $correo = Input::get('correo');
+  $username = Input::get('username');
+  if (!empty(Input::file('foto')))
+  {
+    $destinationPath = public_path().'/img/profile';
+    $fileName = $usuario->username.'.png';
+    $foto = '/img/profile/'.$usuario->username.'.png';
+    Input::file('foto')->move($destinationPath, $fileName);
+    $usuario->foto = $foto;
+  }
+  if($nombre != '')
+    $usuario->nombre = $nombre;
+  if($apellido != '')
+    $usuario->apellido = $apellido;
+  if($correo != '')
+    $usuario->correo = $correo;
+  if($username != '')
+    $usuario->username = $username;
+  $usuario->save();
+  return redirect('/informacion');
+
+}
+
+public function delete()
+{
+  Usuario::destroy(Auth::user()->username);
+  return redirect('/');
+}
+
+public function doLogout()
+{
+  Auth::logout();
+  Session::flush();
+  return redirect('/signin');
+}
 }

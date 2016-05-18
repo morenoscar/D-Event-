@@ -6,11 +6,12 @@
     <img id="foto" src="{!! $currentUser->foto !!}">
   </div>
   <div class="userName">
-    {!! $currentUser->username !!}
+      {!! $currentUser->username !!}
   </div>
 </div>
 <div class="list">
   <ul>
+  <li><a href="/informacion">Ver perfil</a><li>
   <li><a href="/eventos">Eventos</a><li>
   <li><a href="/historial">Historial</a><li>
   <li><a href="/amigos">Amigos</a><li>
