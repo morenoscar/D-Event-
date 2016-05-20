@@ -15,6 +15,7 @@ use App\Usuario;
 use Auth;
 use Session;
 use DB;
+use Mail;
 
 class UsuarioController extends Controller
 {
@@ -31,11 +32,7 @@ class UsuarioController extends Controller
     'unique' => 'Ese :attribute ya ha sido tomado',
     'same' => 'Las contraseñas son diferentes'
   );
-  /*
-  public function __construct(){
-  $this->middleware('auth');
-}
-*/
+
 /**
 * Display a listing of the resource.
 *
@@ -153,4 +150,5 @@ public function doLogout()
   Session::flush();
   return redirect('/signin');
 }
+
 }

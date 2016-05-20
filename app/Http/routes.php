@@ -21,15 +21,6 @@ Route::get('/', function () {
 Route::get('/home/{currentUser}/evento/{currentEvent}', array('uses' => 'EventoController@showEvent'));
 
 /*
-Desplegar image
-*/
-/*
-Route::get('/showImage.php', function () {
-  return view('/pages/home/showImage');
-});
-*/
-
-/*
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
@@ -59,4 +50,10 @@ Route::group(['middleware' => ['web']], function () {
   Route::resource('/register','UsuarioController');
 
   Route::post('/home/{currentUser}',['middleware' => 'auth','uses' =>'EventoController@store']);
+
+  //Route::get('/home/{currentUser}/evento/{currentEvent}/', array('uses' => 'EventoController@showEvent'));
+
+//  Route::get('auth/confirm/email/{email}/confirm_token/{token}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+  Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+
 });
