@@ -18,15 +18,6 @@
 
 
 /*
-Desplegar image
-*/
-/*
-Route::get('/showImage.php', function () {
-  return view('/pages/home/showImage');
-});
-*/
-
-/*
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
@@ -44,6 +35,9 @@ Route::group(['middleware' => ['web']], function () {
   /*
   | Route UsuarioController
   */
+  Route::get('/informacion', ['middleware' => 'auth','uses'=>'UsuarioController@showUser']);
+  Route::post('/informacion',['middleware' => 'auth','uses' => 'UsuarioController@edit']);
+  Route::post('/informacion/eliminar',['middleware' => 'auth','uses' => 'UsuarioController@delete']);
   // route to logout an user
   Route::get('/logout', ['middleware' => 'auth','uses'=>'UsuarioController@doLogout']);
   // route to show home for the username
@@ -60,4 +54,11 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('/home/{currentUser}/evento/{currentEvent}/eliminar',['middleware' => 'auth','uses' => 'EventoController@delete']);
   Route::post('/home/{currentUser}/evento/{currentEvent}/añadircol',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
   Route::get('/home/{currentUser}/colabora',['middleware' => 'auth','uses'=>'UsuarioController@showCollaborations']);
+  Route::post('/home/{currentUser}',['middleware' => 'auth','uses' =>'EventoController@store']);
+
+  //Route::get('/home/{currentUser}/evento/{currentEvent}/', array('uses' => 'EventoController@showEvent'));
+
+//  Route::get('auth/confirm/email/{email}/confirm_token/{token}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+  Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+
 });

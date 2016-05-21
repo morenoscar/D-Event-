@@ -16,6 +16,7 @@ use App\TipoEvento;
 use Auth;
 use Session;
 use DB;
+use Mail;
 
 class UsuarioController extends Controller
 {
@@ -32,41 +33,48 @@ class UsuarioController extends Controller
     'unique' => 'Ese :attribute ya ha sido tomado',
     'same' => 'Las contraseñas son diferentes'
   );
-  /*
-  public function __construct(){
-    $this->middleware('auth');
-  }
- */
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
 
-  public function index()
-  {
-    return view('pages.pre-home.register');
-  }
+/**
+* Display a listing of the resource.
+*
+* @return \Illuminate\Http\Response
+*/
 
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request)
-  {
-      $this->validate($request, $this->rulesRegister, $this->messages);
+public function index()
+{
+  return view('pages.pre-home.register');
+}
 
-      Usuario::create(array(
-        'nombre' => Input::get('nombre'),
-        'apellido' => Input::get('apellido'),
-        'correo' => Input::get('correo'),
-        'username' => Input::get('username'),
-        'password' => Hash::make(Input::get('password')),
-      ));
-      return redirect('/signin');
-  }
+/**
+* Display a listing of the resource.
+*
+* @return \Illuminate\Http\Response
+*/
+
+public function showUser()
+{
+  return view('pages.home.userProfile')->with('currentUser',Auth::user());
+}
+
+/**
+* Store a newly created resource in storage.
+*
+* @param  \Illuminate\Http\Request  $request
+* @return \Illuminate\Http\Response
+*/
+public function store(Request $request)
+{
+  $this->validate($request, $this->rulesRegister, $this->messages);
+
+  Usuario::create(array(
+    'nombre' => Input::get('nombre'),
+    'apellido' => Input::get('apellido'),
+    'correo' => Input::get('correo'),
+    'username' => Input::get('username'),
+    'password' => Hash::make(Input::get('password')),
+  ));
+  return redirect('/signin');
+}
 
   public function showHome($user)
   {
@@ -91,30 +99,66 @@ class UsuarioController extends Controller
       return view('pages.home.colabora',compact('currentUser','colaboraciones'));
   }
 
-  public function showLogin()
-  {
-    return view('pages.pre-home.signin');
-  }
+public function showLogin()
+{
+  return view('pages.pre-home.signin');
+}
 
-  public function doLogin()
+public function doLogin()
+{
+  $userdata = array(
+    'username' => Input::get('username'),
+    'password' => Input::get('password'),
+  );
+  if (Auth::attempt($userdata))
   {
-    $userdata = array(
-      'username' => Input::get('username'),
-      'password' => Input::get('password'),
-    );
-    if (Auth::attempt($userdata))
-    {
-      return redirect('/home/'.Input::get('username'));
-    }
-    else {
-      $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
-      return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
-    }
+    return redirect('/home/'.Input::get('username'));
   }
-  public function doLogout()
+  else {
+    $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+    return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
+  }
+}
+
+public function edit()
+{
+  $usuario = Auth::user();
+  $nombre = Input::get('nombre');
+  $apellido = Input::get('apellido');
+  $correo = Input::get('correo');
+  $username = Input::get('username');
+  if (!empty(Input::file('foto')))
   {
-    Auth::logout();
-    Session::flush();
-    return redirect('/signin');
+    $destinationPath = public_path().'/img/profile';
+    $fileName = $usuario->username.'.png';
+    $foto = '/img/profile/'.$usuario->username.'.png';
+    Input::file('foto')->move($destinationPath, $fileName);
+    $usuario->foto = $foto;
   }
+  if($nombre != '')
+    $usuario->nombre = $nombre;
+  if($apellido != '')
+    $usuario->apellido = $apellido;
+  if($correo != '')
+    $usuario->correo = $correo;
+  if($username != '')
+    $usuario->username = $username;
+  $usuario->save();
+  return redirect('/informacion');
+
+}
+
+public function delete()
+{
+  Usuario::destroy(Auth::user()->username);
+  return redirect('/');
+}
+
+public function doLogout()
+{
+  Auth::logout();
+  Session::flush();
+  return redirect('/signin');
+}
+
 }
