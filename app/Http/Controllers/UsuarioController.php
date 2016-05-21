@@ -11,6 +11,7 @@ use Validator;
 use Hash;
 use Illuminate\Support\Facades\Input;
 use App\Usuario;
+use App\TipoEvento;
 // Auth
 use Auth;
 use Session;
@@ -74,11 +75,20 @@ class UsuarioController extends Controller
       return redirect('/signin');
     }
     if(Auth::user()->username == $currentUser->username){
-      return view('pages.home.userHome')->with('currentUser',$currentUser);
+      $eventTypes=TipoEvento::obtenerTipos();
+      $misEventos=Usuario::misEventos(Auth::user()->username);
+      return view('pages.home.userHome',compact('currentUser','eventTypes','misEventos'));
     }
     else{
       return redirect('/signin');
     }
+  }
+
+  public function showCollaborations($user)
+  {
+      $currentUser = Usuario::find($user);
+      $colaboraciones=Usuario::colaboraciones(Auth::user()->username);
+      return view('pages.home.colabora',compact('currentUser','colaboraciones'));
   }
 
   public function showLogin()

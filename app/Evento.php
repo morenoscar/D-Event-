@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Evento extends Model
 {
@@ -10,15 +11,32 @@ class Evento extends Model
   public $incrementing = true;
   protected $table = 'evento';
   // BORRAR TipoEvento_idTipoEvento
-  protected $fillable = ['descripcion','estado','fechaFin','fechaInicio','horaFin','horaInicio','nombre','presupuesto','direccion','recordatorio','TipoEvento_idTipoEvento'];
+  protected $fillable = ['descripcion','estado','fechaFin','fechaInicio','horaFin','horaInicio','nombre','presupuesto','direccion','recordatorio','TipoEvento_idTipoEvento','foto'];
   protected $primaryKey = 'idEvento';
 
   /**
   * The users that belong to the event.
   */
+
+  public static function buscarUsuarioEmail($email){
+    $user = DB::table('usuario')->where('correo',$email)->first();
+    return $user;
+  }
+  public static function nuevoColaborador($user,$idEvento){
+    DB::table('permisosevento')->insert(['Usuario_username'=>$user->username, 'Evento_idEvento'=>$idEvento,'tipoUsuario'=>'COLABORADOR']);
+  }
+  public static function colaboradores($idEvento){
+    //$colaboradores = DB::table('permisosevento')->where('Evento_idEvento',$idEvento)->where('tipoUsuario','COLABORADOR')->get();
+    $colaboradores = Usuario::whereHas('eventos', function ($query) use($idEvento) {
+    $query->where('tipoUsuario','COLABORADOR');
+    $query->where('Evento_idEvento',$idEvento);
+    })->get();
+    return $colaboradores;
+  }
+
   public function usuarios()
   {
-    return $this->belongsToMany('App\Usuario', 'permisosEvento', 'Usuario_username', 'Evento_idEvento')->withPivot('tipoUsuario');
+    return $this->belongsToMany('App\Usuario', 'permisosEvento','Evento_idEvento', 'Usuario_username')->withPivot('tipoUsuario');
   }
 
   /**

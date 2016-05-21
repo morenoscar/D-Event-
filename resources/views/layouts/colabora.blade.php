@@ -12,7 +12,7 @@
 
   <div class="content">
     <div class="sidebar">
-      @include('includes.event.sidebar')
+      @include('includes.home.sidebar')
     </div>
 
     <div class="main-content">
@@ -26,9 +26,5 @@
 
   @yield('footer-include')
 
-<!--
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js"></script>
--->
 </body>
 </html>

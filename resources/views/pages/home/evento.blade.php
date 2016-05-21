@@ -1,59 +1,183 @@
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Drag and Drop</title>
-  <!-- Mobile support -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.evento')
 
-  <!-- Twitter Bootstrap -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+@section('title-page')
+<title>{!!$currentEvent->nombre!!}</title>
+@stop
+@section('header-include')
+<!--
+BEGIN OF CSS OF MODAL FORM
+-->
+<link rel="stylesheet" href="/CSS/modalAssets/bootstrap.min.css">
+<link rel="stylesheet" href="/CSS/modalAssets/form-elements.css">
+<link rel="stylesheet" href="/CSS/modalAssets/style.css">
+<!--
+END OF CSS OF MODAL FORM
+-->
+<!--
+BEGIN OF CSS AND JS OF DATE PICKER
+-->
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2016.2.504/styles/kendo.material.min.css" />
+<script src="https://kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2016.2.504/js/kendo.all.min.js"></script>
+<!--
+END OF CSS AND JS OF DATE PICKER
+-->
+@stop
 
-  <!-- Material Design for Bootstrap -->
-  <link href="http://localhost:8000/CSS/material-wfont.min.css" rel="stylesheet">
-  <link href="http://localhost:8000/CSS/ripples.min.css" rel="stylesheet">
-  <link href="http://localhost:8000/CSS/custom.css" rel="stylesheet">
+@section('content')
 
-  <link href="http://localhost:8000/CSS/home.css" media="all" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="http://localhost:8000/CSS/materialize.min.css" media="screen" title="no title" charset="utf-8">
+<div>
+  <h3>Información Evento</h3>
+  <p>Nombre: {!!$currentEvent->nombre!!}</p>
+  <p>Tipo de Evento: {!!$currentEvent->TipoEvento_idTipoEvento!!}</p>
+  <p>Descripcion: {!!$currentEvent->descripcion!!}</p>
+  <p>Fecha de inicio: {!!$currentEvent->fechaInicio!!}</p>
+  <p>Fecha de finalizacion: {!!$currentEvent->fechaFin!!}</p>
+  <p>Hora de inicio: {!!$currentEvent->horaInicio!!}</p>
+  <p>Hora de finalizacion: {!!$currentEvent->horaFin!!}</p>
+  <p>Presupuesto: {!!$currentEvent->presupuesto!!}</p>
+</div>
+<!--<a class="launch-modal" href="#" data-modal-id="modal-login">Editar evento</a>-->
+<div class="">
+  <button type="button" class="launch-modal" data-modal-id="modal-edit-event">Modificar Evento</button>
+</div>
 
-  <!-- Font Awesome -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="">
+  <button type="button" class="launch-modal" data-modal-id="modal-add-coll">Añadir Colaborador</button>
+</div>
+<div class="">
+  {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/eliminar']) !!}
+    {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+    {!! Form::button('Eliminar', array('type'=>'submit')) !!}
+  {!! Form::close() !!}
+</div>
+<div>
+  <h3>Colaboradores</h3>
+  @foreach ($colaboradores as $colaborador)
+    <p>- {!!$colaborador->username!!}</p>
+  @endforeach
+</div>
+<!--
+EL FORMULARIO DE AÑADIR COLABORADOR
+-->
+<div class="modal fade" id="modal-add-coll" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-
-  <script type="text/javascript" src="http://localhost:8000/js/materialize.min.js"></script>
-
-  <!-- svg.js -->
-  <script src="http://localhost:8000/js/svg.js"></script>
-  <script src="http://localhost:8000/js/svg.draggy.js"></script>
-
-  <script src="http://localhost:8000/js/handlers.js"></script>
-</head>
-<body>
-  <header>
-    @include('includes.home.header')
-  </header>
-  <div class="content">
-    <div class="sidebar">
-      @include('includes.home.sidebarItemsDrag')
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title" id="modal-login-label">Añadir Colaborador</h3>
     </div>
-
-    <div class="container">
-      <h2>Drag and Drop</h2>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="graph"></div>
-        </div>
+    <div class="modal-body">
+      {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/añadircol']) !!}
+        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+      <div class="input-field">
+        {!! Form::email('correo', null, array('class'=>'form-control ','placeholder'=>'Correo Electrónico','required')) !!}
       </div>
-      <script>
-      hljs.highlightBlock(document.querySelector("pre"));
-      </script>
+      <div>
+        {!! Form::button('Aceptar', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+      </div>
+      {!! Form::close() !!}
     </div>
   </div>
+</div>
+</div>
+<!--
+TERMINA EL FORMULARIO DE AÑADIR COLABORADOR
+-->
 
-  <footer class="footer">
-    @include('includes.footer')
-  </footer>
-</body>
-</html>
+<!--
+EL FORMULARIO DE ACTUALIZAR EVENTO
+-->
+<div class="modal fade" id="modal-edit-event" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title" id="modal-login-label">Editar evento</h3>
+      <p>Ingrese solo los datos que quiere cambiar:</p>
+    </div>
+    <div class="modal-body">
+      {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}']) !!}
+        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+      <div class="input-field">
+        {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre')) !!}
+      </div>
+      <div class="input-field">
+        {!! Form::text('TipoEvento_idTipoEvento', null, array('class'=>'form-control ','placeholder'=>'Tipo Evento')) !!}
+      </div>
+      <div class="input-field">
+        {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion')) !!}
+      </div>
+
+      <div class="demo-section k-content">
+        <input id="dateInicio" placeholder="Fecha Inicio" name="fechaInicio" style="width: 100%" />
+      </div>
+      <script>
+      $(document).ready(function() {
+        // create DatePicker from input HTML element
+        $("#dateInicio").kendoDatePicker();
+      });
+      </script>
+
+      <div class="input-field">
+        {!! Form::text('horaInicio', null, array('class'=>'form-control ','placeholder'=>'Hora Inicio')) !!}
+      </div>
+
+      <div class="demo-section k-content">
+        <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%" />
+      </div>
+      <script>
+      $(document).ready(function() {
+        // create DatePicker from input HTML element
+        $("#dateFinal").kendoDatePicker();
+      });
+      </script>
+
+      <div class="input-field">
+        {!! Form::text('horaFin', null, array('class'=>'form-control ','placeholder'=>'Hora Fin')) !!}
+      </div>
+      <div class="input-field">
+        {!! Form::text('presupuesto', null, array('class'=>'form-control ','placeholder'=>'Presupuesto')) !!}
+      </div>
+      <div>
+        {!! Form::button('Aceptar', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+</div>
+<!--
+TERMINA EL FORMULARIO DE ACUALIZAR EVENTO
+-->
+
+@stop
+
+@section('footer-include')
+<script src="/js/modalAssets/bootstrap.min.js"></script>
+<script src="/js/modalAssets/jquery.backstretch.min.js"></script>
+<script src="/js/modalAssets/scripts.js"></script>
+@stop
+
+
+<script type="text/javascript">
+var errors = "";
+@if (count($errors) > 0)
+
+@foreach ($errors->all() as $error)
+errors = errors + '{{ $error }}\n';
+@endforeach
+@endif
+
+if (errors != "")
+{
+  alert(errors);
+}
+</script>

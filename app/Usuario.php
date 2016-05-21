@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class Usuario extends Authenticatable //extends Model
 {
@@ -31,18 +32,31 @@ class Usuario extends Authenticatable //extends Model
     'password','remember_token',
   ];
 
+  public static function misEventos($username){
+    $eventos = Evento::whereHas('usuarios', function ($query) use($username) {
+    $query->where('tipoUsuario','CREADOR');
+    $query->where('Usuario_username',$username);
+    })->get();
+    return $eventos;
+  }
+  public static function colaboraciones($username){
+    $eventos = Evento::whereHas('usuarios', function ($query) use($username) {
+    $query->where('tipoUsuario','COLABORADOR');
+    $query->where('Usuario_username',$username);
+    })->get();
+    return $eventos;
+  }
   /**
   * The roles that belong to the user.
   */
   public function eventos()
   {
-    return $this->belongsToMany('App\Evento', 'permisosEvento', 'Usuario_username', 'Evento_idEvento')->withPivot('tipoUsuario');
+    return $this->belongsToMany('App\Evento', 'permisosEvento','Usuario_username','Evento_idEvento')->withPivot('tipoUsuario');
   }
-
   public function agregarPermisosEvento($idEvento)
   {
     // PARA LLENAR VARIOS ES CON sync
-    $this->eventos()->attach($idEvento,array('tipoUsuario' => 'CREADOR'));
+    return $this->eventos()->attach($idEvento,array('tipoUsuario' => 'CREADOR'));
   }
 
 

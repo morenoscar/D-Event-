@@ -11,9 +11,13 @@
 </div>
 <div class="list">
   <ul>
-  <li><a href="/eventos">Eventos</a><li>
-  <li><a href="/historial">Historial</a><li>
-  <li><a href="/home/{!! $currentUser->username !!}/colabora">Eventos a Colaborar</a><li>
+  <li><a href="">Informacion General</a><li>
+  <li><a href="">To-Do List</a><li>
+  <li><a href="">Cotizaciones</a><li>
+  <li><a href="">Carrito de Compras</a><li>
+  <li><a href="">Invitados</a><li>
+  <li><a href="">Colaboradores</a><li>
+  <li><a href="">Regalos/Aportes</a><li>
   </ul>
 </div>
 <div class="premium">

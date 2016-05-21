@@ -197,7 +197,7 @@ STYLE DEL MAIN-CONTENT
 
 .main-content{
 background-color: #EDEDED;
-width: 75%;
+width: 70%;
 padding: 50px 150px 50px 150px;
 }
 
@@ -371,4 +371,11 @@ STYLE DEL FOOTER
 width: 100%;
 background: black;
 color: white;
+}
+
+.error{
+  width: 50%;
+  margin: auto;
+  color: #fff;
+  background-color:#fa6a6a;
 }

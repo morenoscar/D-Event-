@@ -1,7 +1,6 @@
 <nav>
-
     <div class="contLogo">
-      <a href="/home/{!! $currentUser->username !!}"><img class="logo" src="../img/nombre.png"/></a>
+      <a href="/home/{!! $currentUser->username !!}"><img class="logo" src="/img/nombre.png"/></a>
     </div>
 
     <div class="botones">

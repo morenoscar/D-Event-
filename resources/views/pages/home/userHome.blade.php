@@ -1,4 +1,3 @@
-
 @extends('layouts.home')
 
 @section('title-page')
@@ -9,13 +8,12 @@
 <!--
 BEGIN OF CSS OF MODAL FORM
 -->
-<link rel="stylesheet" href="../CSS/modalAssets/bootstrap.min.css">
-<link rel="stylesheet" href="../CSS/modalAssets/form-elements.css">
-<link rel="stylesheet" href="../CSS/modalAssets/style.css">
+<link rel="stylesheet" href="/CSS/modalAssets/bootstrap.min.css">
+<link rel="stylesheet" href="/CSS/modalAssets/form-elements.css">
+<link rel="stylesheet" href="/CSS/modalAssets/style.css">
 <!--
 END OF CSS OF MODAL FORM
 -->
-
 <!--
 BEGIN OF CSS AND JS OF DATE PICKER
 -->
@@ -28,10 +26,9 @@ END OF CSS AND JS OF DATE PICKER
 -->
 @stop
 
-
 @section('content')
 <div class="contentHeader">
-  <h3>Eventos</h3>
+  <h3>Mis Eventos</h3>
   <!--<div class="input-group" id="search-bar">-->
   <form id="searchform" action="index.html" method="post">
     <input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2">
@@ -51,7 +48,7 @@ END OF CSS AND JS OF DATE PICKER
     </center>
   </div>
 
-  <!--
+<!--
   EL FORMULARIO DE CREAR EVENTO
 -->
 <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
@@ -72,13 +69,17 @@ END OF CSS AND JS OF DATE PICKER
           {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
         </div>
         <div class="input-field">
-          {!! Form::text('TipoEvento_idTipoEvento', null, array('class'=>'form-control ','placeholder'=>'Tipo Evento', 'required')) !!}
+          {!! Form::select('TipoEvento_idTipoEvento',(['0' => 'Tipo de evento'] + $eventTypes),null,array('class' => 'form-control')) !!}
         </div>
+        <!--
         <div class="input-field">
-          {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion')) !!}
+          {!! Form::text('TipoEvento_idTipoEvento', null, array('class'=>'form-control ','placeholder'=>'Tipo Evento', 'required')) !!}
+        </div>-->
+        <div class="input-field">
+          {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion','required')) !!}
         </div>
         <div class="demo-section k-content">
-          <input id="dateInicio" placeholder="Fecha Inicio" name="fechaInicio" style="width: 100%" />
+          <input id="dateInicio" placeholder="Fecha Inicio" name="fechaInicio" style="width: 100%" required/>
         </div>
         <script>
         $(document).ready(function() {
@@ -90,7 +91,7 @@ END OF CSS AND JS OF DATE PICKER
           {!! Form::text('horaInicio', null, array('class'=>'form-control ','placeholder'=>'Hora Inicio', 'required')) !!}
         </div>
         <div class="demo-section k-content">
-          <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%" />
+          <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%" required/>
         </div>
         <script>
         $(document).ready(function() {
@@ -108,9 +109,7 @@ END OF CSS AND JS OF DATE PICKER
           {!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
         </div>
         {!! Form::close() !!}
-
       </div>
-
     </div>
   </div>
 </div>
@@ -118,6 +117,7 @@ END OF CSS AND JS OF DATE PICKER
 TERMINA EL FORMULARIO DE CREAR EVENTO
 -->
 
+<!--
 @if (count($errors) > 0)
 <div class="error">
   <ul>
@@ -127,12 +127,12 @@ TERMINA EL FORMULARIO DE CREAR EVENTO
   </ul>
 </div>
 @endif
+-->
 
-
-@foreach ($currentUser->eventos as $evento)
+@foreach ($misEventos as $evento)
 <div class="block">
   <div class="image-block">
-    <img src="../{!! $evento->foto !!}"/>
+    <img src="{!! $evento->foto !!}"/>
   </div>
   <div class="bottom-block">
     <div class="name-block">
@@ -154,3 +154,19 @@ TERMINA EL FORMULARIO DE CREAR EVENTO
 <script src="../js/modalAssets/jquery.backstretch.min.js"></script>
 <script src="../js/modalAssets/scripts.js"></script>
 @stop
+
+
+<script type="text/javascript">
+var errors = "";
+@if (count($errors) > 0)
+
+@foreach ($errors->all() as $error)
+errors = errors + '{{ $error }}\n';
+@endforeach
+@endif
+
+if (errors != "")
+{
+  alert("Algo salio mal:\n" + errors);
+}
+</script>
