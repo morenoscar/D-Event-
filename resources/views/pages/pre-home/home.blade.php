@@ -6,5 +6,6 @@
 
 @section('content')
 <div class="main-content">
+	<a class="mensajeini">D-Event</a>
 </div>
 @stop
