@@ -1,4 +1,4 @@
-@extends('layouts.colabora')
+@extends('layouts.colaboraciones')
 
 @section('title-page')
 <title>Home - {!! $currentUser->nombre !!}</title>

@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App;
 use App\Evento;
-
+use App\ToDo;
 use App\Usuario;
 
 
@@ -106,6 +106,28 @@ class EventoController extends Controller
     else{
       Evento::nuevoColaborador($user,$idEvento);
     }
-    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento);
+    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento.'/colaboradores');
   }
+  public function cotizaciones($username,$idEvento)
+  {
+    $currentEvent = Evento::find($idEvento);
+    $currentUser=Usuario::find($username);
+    //$colaboradores=Evento::colaboradores($idEvento);
+    return view('pages.home.cotizaciones',compact('currentEvent','currentUser'));
+  }
+  public function colaboradores($username,$idEvento)
+  {
+    $currentEvent = Evento::find($idEvento);
+    $currentUser=Usuario::find($username);
+    $colaboradores=Evento::colaboradores($idEvento);
+    return view('pages.home.colaboradores',compact('currentEvent','currentUser','colaboradores'));
+  }
+  public function deleteCollaborator(Request $request){
+    $currentUser = Usuario::find(Auth::id());
+    $idEvento = Input::get('idEvento');
+    $colaborador = Input::get('username');
+    Evento::eliminarColaborador($colaborador,$idEvento);
+    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento.'/colaboradores');
+  }
+
 }

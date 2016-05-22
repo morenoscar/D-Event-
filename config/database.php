@@ -74,10 +74,14 @@ return [
     'database' => 'DEvent',
     'username' => 'root',
 <<<<<<< HEAD
+<<<<<<< HEAD
     'password' => 'losmillos',
 =======
     'password' => 'magoscar15',
 >>>>>>> oscar
+=======
+    'password' => '1026',
+>>>>>>> 5bd75f5c5e2d19704e65910be215421474b79135
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     //'prefix' => '',

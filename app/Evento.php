@@ -22,6 +22,7 @@ class Evento extends Model
     $user = DB::table('usuario')->where('correo',$email)->first();
     return $user;
   }
+
   public static function nuevoColaborador($user,$idEvento){
     DB::table('permisosevento')->insert(['Usuario_username'=>$user->username, 'Evento_idEvento'=>$idEvento,'tipoUsuario'=>'COLABORADOR']);
   }
@@ -33,6 +34,10 @@ class Evento extends Model
     })->get();
     return $colaboradores;
   }
+  public static function eliminarColaborador($user,$idEvento){
+    DB::table('permisosEvento')->where('Usuario_username',$user)->where('Evento_idEvento',$idEvento)->delete();
+  }
+
 
   public function usuarios()
   {

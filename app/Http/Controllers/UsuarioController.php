@@ -96,7 +96,7 @@ public function store(Request $request)
   {
       $currentUser = Usuario::find($user);
       $colaboraciones=Usuario::colaboraciones(Auth::user()->username);
-      return view('pages.home.colabora',compact('currentUser','colaboraciones'));
+      return view('pages.home.colaboraciones',compact('currentUser','colaboraciones'));
   }
 
 public function showLogin()

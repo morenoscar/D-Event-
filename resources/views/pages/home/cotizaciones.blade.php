@@ -1,7 +1,7 @@
 @extends('layouts.evento')
 
 @section('title-page')
-<title>{!!$currentEvent->nombre!!}</title>
+<title>{!!$currentEvent->nombre!!} - Cotizaciones</title>
 @stop
 @section('header-include')
 <!--
@@ -28,7 +28,7 @@ END OF CSS AND JS OF DATE PICKER
 @section('content')
 
 <div>
-  <h3>Información Evento</h3>
+  <h3>Cotizaciones</h3>
   <p>Nombre: {!!$currentEvent->nombre!!}</p>
   <p>Tipo de Evento: {!!$currentEvent->TipoEvento_idTipoEvento!!}</p>
   <p>Descripcion: {!!$currentEvent->descripcion!!}</p>
@@ -44,11 +44,45 @@ END OF CSS AND JS OF DATE PICKER
 </div>
 
 <div class="">
+  <button type="button" class="launch-modal" data-modal-id="modal-add-coll">Añadir Colaborador</button>
+</div>
+<div class="">
   {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/eliminar']) !!}
     {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
-    {!! Form::button('Eliminar evento', array('type'=>'submit')) !!}
+    {!! Form::button('Eliminar', array('type'=>'submit')) !!}
   {!! Form::close() !!}
 </div>
+
+<!--
+EL FORMULARIO DE AÑADIR COLABORADOR
+-->
+<div class="modal fade" id="modal-add-coll" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title" id="modal-login-label">Añadir Colaborador</h3>
+    </div>
+    <div class="modal-body">
+      {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/añadircol']) !!}
+        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+      <div class="input-field">
+        {!! Form::email('correo', null, array('class'=>'form-control ','placeholder'=>'Correo Electrónico','required')) !!}
+      </div>
+      <div>
+        {!! Form::button('Aceptar', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+</div>
+<!--
+TERMINA EL FORMULARIO DE AÑADIR COLABORADOR
+-->
 
 <!--
 EL FORMULARIO DE ACTUALIZAR EVENTO
