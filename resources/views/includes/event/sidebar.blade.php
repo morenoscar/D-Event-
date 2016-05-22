@@ -11,12 +11,12 @@
 </div>
 <div class="list">
   <ul>
-  <li><a href="">Informacion General</a><li>
-  <li><a href="">To-Do List</a><li>
-  <li><a href="">Cotizaciones</a><li>
+  <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}">Informacion General</a><li>
+  <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}/toDo">To-Do List</a><li>
+  <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}/cotizaciones">Cotizaciones</a><li>
   <li><a href="">Carrito de Compras</a><li>
   <li><a href="">Invitados</a><li>
-  <li><a href="">Colaboradores</a><li>
+  <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}/colaboradores">Colaboradores</a><li>
   <li><a href="">Regalos/Aportes</a><li>
   </ul>
 </div>

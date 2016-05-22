@@ -52,7 +52,7 @@ Route::group(['middleware' => ['web']], function () {
   Route::get('/home/{currentUser}/evento/{currentEvent}',['middleware' => 'auth','uses' => 'EventoController@showEvent']);
   Route::post('/home/{currentUser}/evento/{currentEvent}',['middleware' => 'auth','uses'=>'EventoController@edit']);
   Route::post('/home/{currentUser}/evento/{currentEvent}/eliminar',['middleware' => 'auth','uses' => 'EventoController@delete']);
-  Route::post('/home/{currentUser}/evento/{currentEvent}/añadircol',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
+  //Route::post('/home/{currentUser}/evento/{currentEvent}/añadircol',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
   Route::get('/home/{currentUser}/colabora',['middleware' => 'auth','uses'=>'UsuarioController@showCollaborations']);
   Route::post('/home/{currentUser}',['middleware' => 'auth','uses' =>'EventoController@store']);
 
@@ -60,5 +60,11 @@ Route::group(['middleware' => ['web']], function () {
 
 //  Route::get('auth/confirm/email/{email}/confirm_token/{token}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
   Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
-
+Route::get('/home/{currentUser}/evento/{currentEvent}/cotizaciones',['middleware' => 'auth','uses' => 'EventoController@cotizaciones']);
+Route::get('/home/{currentUser}/evento/{currentEvent}/colaboradores',['middleware' => 'auth','uses' => 'EventoController@colaboradores']);
+Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/añadir',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
+Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/eliminar',['middleware' => 'auth','uses' => 'EventoController@deleteCollaborator']);
+Route::get('/home/{currentUser}/evento/{currentEvent}/toDo',['middleware' => 'auth','uses' => 'ToDoController@ShowToDo']);
+Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/añadir',['middleware' => 'auth','uses' => 'ToDoController@store']);
+Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
 });

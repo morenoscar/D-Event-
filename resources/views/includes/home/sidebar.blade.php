@@ -12,7 +12,7 @@
 <div class="list">
   <ul>
   <li><a href="/informacion">Ver perfil</a><li>
-  <li><a href="/eventos">Eventos</a><li>
+  <li><a href="/home/{!! $currentUser->username !!}">Eventos</a><li>
   <li><a href="/historial">Historial</a><li>
   <li><a href="/home/{!! $currentUser->username !!}/colabora">Eventos a Colaborar</a><li>
   </ul>
