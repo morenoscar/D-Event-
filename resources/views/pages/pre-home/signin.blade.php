@@ -8,7 +8,7 @@
 <div class="main-contentRS">
 	<div class="cover" >
 		<div class="bloque">
-			<img class="imglogo" src="../img/logo.gif"><img>
+			<img class="imglogo" src="../img/logo.gif"></img>
 			<h1 style="font-family:FontD-Event; margin:0;">Inicio Sesión</h1>
 			{!! Form::open(['url' => 'signin']) !!}
 			<div class="input-field">
