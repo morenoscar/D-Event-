@@ -55,7 +55,6 @@ Route::group(['middleware' => ['web']], function () {
   //Route::post('/home/{currentUser}/evento/{currentEvent}/añadircol',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
   Route::get('/home/{currentUser}/colabora',['middleware' => 'auth','uses'=>'UsuarioController@showCollaborations']);
   Route::post('/home/{currentUser}',['middleware' => 'auth','uses' =>'EventoController@store']);
-
   //Route::get('/home/{currentUser}/evento/{currentEvent}/', array('uses' => 'EventoController@showEvent'));
 
 //  Route::get('auth/confirm/email/{email}/confirm_token/{token}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
@@ -67,4 +66,6 @@ Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/eliminar',[
 Route::get('/home/{currentUser}/evento/{currentEvent}/toDo',['middleware' => 'auth','uses' => 'ToDoController@ShowToDo']);
 Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/añadir',['middleware' => 'auth','uses' => 'ToDoController@store']);
 Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
+
+Route::get('/drag',['middleware' => 'guest','uses' => 'ObjetoController@consultarPlano']);
 });
