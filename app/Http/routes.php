@@ -67,4 +67,5 @@ Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/eliminar',[
 Route::get('/home/{currentUser}/evento/{currentEvent}/toDo',['middleware' => 'auth','uses' => 'ToDoController@ShowToDo']);
 Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/añadir',['middleware' => 'auth','uses' => 'ToDoController@store']);
 Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
+Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/modificar',['middleware' => 'auth','uses' => 'ToDoController@edit']);
 });

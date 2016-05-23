@@ -38,6 +38,8 @@ END OF CSS AND JS OF DATE PICKER
   <p>Hora de finalizacion: {!!$currentEvent->horaFin!!}</p>
   <p>Presupuesto: {!!$currentEvent->presupuesto!!}</p>
 </div>
+
+@if($tipoUsuario=='CREADOR')
 <!--<a class="launch-modal" href="#" data-modal-id="modal-login">Editar evento</a>-->
 <div class="">
   <button type="button" class="launch-modal" data-modal-id="modal-edit-event">Modificar Evento</button>
@@ -118,6 +120,7 @@ EL FORMULARIO DE ACTUALIZAR EVENTO
 <!--
 TERMINA EL FORMULARIO DE ACUALIZAR EVENTO
 -->
+@endif
 
 @stop
 

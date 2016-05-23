@@ -40,10 +40,10 @@ class EventoController extends Controller
 
   public function showEvent($username,$idEvento)
   {
-    $currentEvent = Evento::find($idEvento);
+    $currentEvent=Evento::find($idEvento);
     $currentUser=Usuario::find($username);
-    $colaboradores=Evento::colaboradores($idEvento);
-    return view('pages.home.evento',compact('currentEvent','currentUser','colaboradores'));
+    $tipoUsuario=Usuario::tipoUsuario($username,$idEvento);
+    return view('pages.home.evento',compact('currentEvent','currentUser','tipoUsuario'));
   }
 
   /**
@@ -120,7 +120,8 @@ class EventoController extends Controller
     $currentEvent = Evento::find($idEvento);
     $currentUser=Usuario::find($username);
     $colaboradores=Evento::colaboradores($idEvento);
-    return view('pages.home.colaboradores',compact('currentEvent','currentUser','colaboradores'));
+    $tipoUsuario=Usuario::tipoUsuario($username,$idEvento);
+    return view('pages.home.colaboradores',compact('currentEvent','currentUser','colaboradores','tipoUsuario'));
   }
   public function deleteCollaborator(Request $request){
     $currentUser = Usuario::find(Auth::id());
