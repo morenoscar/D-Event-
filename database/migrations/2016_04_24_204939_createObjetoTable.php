@@ -12,19 +12,19 @@ class CreateObjetoTable extends Migration
      */
     public function up()
     {
-      Schema::create('objeto', function(Blueprint $table)
+      Schema::create('ubicacion', function(Blueprint $table)
       {
-        $table->integer('idObjeto');
+        $table->integer('idUbicacion');
         $table->integer('Evento_idEvento');
         $table->double('posicionX');
         $table->double('posicionY');
         $table->double('tamano');
         $table->integer('Figura_idFigura');
 
-        $table->primary('idObjeto');
+        $table->primary('idUbicacion');
       });
 
-      Schema::table('objeto', function($table)
+      Schema::table('ubicacion', function($table)
       {
         $table->foreign('Evento_idEvento')->references('idEvento')->on('evento')->onDelete('cascade')->onUpdate('cascade');
         $table->foreign('Figura_idFigura')->references('idFigura')->on('figura')->onDelete('cascade')->onUpdate('cascade');
@@ -38,6 +38,6 @@ class CreateObjetoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objeto');
+        Schema::dropIfExists('ubicacion');
     }
 }

@@ -9,9 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App;
 use App\Evento;
-use App\ToDo;
-use App\Usuario;
 
+use App\Usuario;
 
 // Validator
 use Validator;
@@ -30,7 +29,7 @@ class EventoController extends Controller
     'horaInicio' => ['required'],
     'nombre' => ['required'],
     'presupuesto' => ['required'],
-    'TipoEvento_idTipoEvento' => ['exists:tipoevento,idTipoEvento']
+    'TipoEvento_idTipoEvento' => ['exists:tipoEvento,idTipoEvento']
   ];
 
   protected $messages = array(
@@ -46,6 +45,25 @@ class EventoController extends Controller
     return view('pages.home.evento',compact('currentEvent','currentUser','colaboradores'));
   }
 
+  private function modify_date($date)
+  {
+    $result = strtok($date,"/");
+    $month = $result;
+    $result = strtok("/");
+    $day = $result;
+    $result = strtok("/");
+    $year = $result;
+    if (strlen($month) == 1)
+    {
+      $month = '0'.$month;
+    }
+    if (strlen($day) == 1)
+    {
+      $day = '0'.$day;
+    }
+    return $year.'-'.$month.'-'.$day;
+  }
+
   /**
   * Store a newly created resource in storage.
   *
@@ -59,8 +77,8 @@ class EventoController extends Controller
     $evento = Evento::create(array(
       'TipoEvento_idTipoEvento' => Input::get('TipoEvento_idTipoEvento'),
       'descripcion' => Input::get('descripcion'),
-      'fechaFin' => Input::get('fechaFin'),
-      'fechaInicio' => Input::get('fechaInicio'),
+      'fechaFin' => $this->modify_date(Input::get('fechaFin')),
+      'fechaInicio' => $this->modify_date(Input::get('fechaInicio')),
       'horaFin' => Input::get('horaFin'),
       'horaInicio' => Input::get('horaInicio'),
       'nombre' => Input::get('nombre'),
@@ -80,7 +98,13 @@ class EventoController extends Controller
     $keys = array_keys($data);
     foreach ($keys as $key) {
       if (!empty($data[$key]) and $key!='_token') {
-        $currentEvent->$key = $data[$key];
+        if($key == 'fechaInicio' || $key == 'fechaFin')
+        {
+          $currentEvent->$key = $this->modify_date($data[$key]);
+        }
+        else {
+          $currentEvent->$key = $data[$key];
+        }
       }
     }
     $currentEvent->save();
@@ -106,8 +130,9 @@ class EventoController extends Controller
     else{
       Evento::nuevoColaborador($user,$idEvento);
     }
-    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento.'/colaboradores');
+    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento);
   }
+
   public function cotizaciones($username,$idEvento)
   {
     $currentEvent = Evento::find($idEvento);
@@ -129,5 +154,4 @@ class EventoController extends Controller
     Evento::eliminarColaborador($colaborador,$idEvento);
     return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento.'/colaboradores');
   }
-
 }

@@ -24,14 +24,16 @@ class UsuarioController extends Controller
     'apellido' => ['required'],
     'correo' => ['required','unique:usuario,correo','email'],
     'nombre' => ['required'],
-    'password' => ['required'],
+    'password' => ['required','min:6','regex:/[A-Z]^[a-zA-Z0-9!$#%]+$/'],
     'username' => ['required','unique:usuario,username'],
     'copypassword' => ['required','same:password']
   ];
   protected $messages = array(
     'required' => 'El campo :attribute es obligatorio',
     'unique' => 'Ese :attribute ya ha sido tomado',
-    'same' => 'Las contraseñas son diferentes'
+    'same' => 'Las contraseñas son diferentes',
+    'min' => 'El tamaño minimo de la contraseña son 6 caracteres',
+    'regex' => 'La contraseña debe comenzar con una mayuscula'
   );
 
 /**
@@ -159,6 +161,11 @@ public function doLogout()
   Auth::logout();
   Session::flush();
   return redirect('/signin');
+}
+
+public function filterEvent()
+{
+  echo 'entre';
 }
 
 }

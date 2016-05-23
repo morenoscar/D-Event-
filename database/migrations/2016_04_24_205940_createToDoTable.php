@@ -16,6 +16,8 @@ class CreateToDoTable extends Migration
       {
         $table->integer('idItem',true);
         $table->string('nota')->default('');
+        $table->string('nombre')->default('')->nullable();
+        $table->string('prioridad')->default('ALTA');
         $table->date('fecha');
         $table->string('estado')->default('');
         $table->integer('Evento_idEvento');

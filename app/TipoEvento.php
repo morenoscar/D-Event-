@@ -15,7 +15,7 @@ class TipoEvento extends Model
      * Get the comments for the blog post.
      */
     public static function obtenerTipos(){
-      $eventTypes = \DB::table('tipoevento')->lists('nombre', 'idTipoEvento');
+      $eventTypes = DB::table('tipoEvento')->lists('nombre', 'idTipoEvento');
       return $eventTypes;
     }
     public function eventos()

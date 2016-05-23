@@ -29,11 +29,10 @@ END OF CSS AND JS OF DATE PICKER
 @section('content')
 <div class="contentHeader">
   <h3>Mis Eventos</h3>
-  <!--<div class="input-group" id="search-bar">-->
-  <form id="searchform" action="index.html" method="post">
-    <input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2">
-    <button type="submit" name="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-  </form>
+  {!! Form::open(['url' => '/home/{{ $currentUser->nombre }}', 'id' => 'searchform']) !!}
+    {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Buscar')) !!}
+    {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+  {!! Form::close() !!}
   <!--</div>-->
 </div>
 
@@ -64,7 +63,7 @@ END OF CSS AND JS OF DATE PICKER
       </div>
 
       <div class="modal-body">
-        {!! Form::open(['url' => '/home/{{ $currentUser->nombre }}']) !!}
+        {!! Form::open(['url' => '/home/{{ $currentUser->nombre }}', 'id' => 'averquepasa']) !!}
         <div class="input-field">
           {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
         </div>
