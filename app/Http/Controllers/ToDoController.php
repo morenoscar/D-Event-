@@ -40,13 +40,29 @@ class ToDoController extends Controller
     $currentEvent = Evento::find($idEvento);
     $currentUser = Usuario::find($username);
     $tarjetas = ToDo::tarjetasEvento($idEvento);
-    return view('pages.home.toDo',compact('currentEvent','currentUser','tarjetas'));
+    $tipoUsuario=Usuario::tipoUsuario($username,$idEvento);
+    return view('pages.home.toDo',compact('currentEvent','currentUser','tarjetas','tipoUsuario'));
   }
 
   public function delete(Request $request)
   {
     ToDo::destroy(Input::get('idItem'));
     $currentUser = Usuario::find(Auth::id());
+    return redirect('/home/'.$currentUser->username.'/evento/'.Input::get('idEvento').'/toDo');
+  }
+
+  public function edit(Request $request){
+    $data = Input::all();
+    $currentUser = Usuario::find(Auth::id());
+    $item = ToDo::find(Input::get('idItem'));
+    $keys = array_keys($data);
+    foreach ($keys as $key) {
+      if (!empty($data[$key]) and $key!='_token' and $key!='idEvento' ) {
+        $item->$key = $data[$key];
+      }
+    }
+    $item->save();
+
     return redirect('/home/'.$currentUser->username.'/evento/'.Input::get('idEvento').'/toDo');
   }
 }

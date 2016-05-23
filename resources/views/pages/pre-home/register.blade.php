@@ -5,10 +5,11 @@
 @stop
 
 @section('content')
-<div class="main-contentRS">
+<div class="main-contentRS" style="padding-top:5%;">
 	<div class="cover">
 		<div class="bloque">
-			<h1>D-Event</h1>
+			<img class="imglogo" src="../img/logo.gif"><img>
+			<h1 style="font-family:FontD-Event; margin:0;">Registro</h1>
 			{!! Form::open(['url' => 'register']) !!}
 			<div class="input-field">
 				{!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
@@ -27,7 +28,7 @@
 		</div>
 		<div class="input-field">
 
-			{!!Form::password('copypassword', array('class'=>'form-control ', 'placeholder'=>'Contraseña', 'required')) !!}
+			{!!Form::password('copypassword', array('class'=>'form-control ', 'placeholder'=>'Repita la contraseña', 'required')) !!}
 
 		</div>
 		<div>

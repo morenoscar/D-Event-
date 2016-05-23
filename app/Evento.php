@@ -40,10 +40,9 @@ class Evento extends Model
     })->get();
     return $colaboradores;
   }
-  public static function eliminarColaborador($user,$idEvento){
-    DB::table('permisosEvento')->where('Usuario_username',$user)->where('Evento_idEvento',$idEvento)->delete();
+  public static function eliminarColaborador($username,$idEvento){
+    DB::table('permisosEvento')->where('Usuario_username',$username)->where('Evento_idEvento',$idEvento)->delete();
   }
-
 
   public function usuarios()
   {
