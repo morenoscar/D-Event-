@@ -16,10 +16,7 @@ END OF CSS OF MODAL FORM
 <!--
 BEGIN OF CSS AND JS OF DATE PICKER
 -->
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-material.min.css" />
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2016.2.504/styles/kendo.material.min.css" />
-<script src="https://kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js"></script>
-<script src="https://kendo.cdn.telerik.com/2016.2.504/js/kendo.all.min.js"></script>
+
 <!--
 END OF CSS AND JS OF DATE PICKER
 -->

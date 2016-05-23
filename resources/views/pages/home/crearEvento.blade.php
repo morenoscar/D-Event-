@@ -4,6 +4,11 @@
 <title>Crear Evento</title>
 @stop
 
+@section('header-include')
+
+<link rel="stylesheet" href="/CSS/createEventStyle.css">
+@stop
+
 @section('content')
 
 <div class="cover">

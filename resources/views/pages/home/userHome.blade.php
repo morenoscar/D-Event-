@@ -17,10 +17,9 @@ END OF CSS OF MODAL FORM
 <!--
 BEGIN OF CSS AND JS OF DATE PICKER
 -->
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-material.min.css" />
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2016.2.504/styles/kendo.material.min.css" />
-<script src="https://kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js"></script>
-<script src="https://kendo.cdn.telerik.com/2016.2.504/js/kendo.all.min.js"></script>
+
+<link rel="stylesheet" href="/CSS/createEventStyle.css">
+
 <!--
 END OF CSS AND JS OF DATE PICKER
 -->
@@ -77,7 +76,7 @@ END OF CSS AND JS OF DATE PICKER
         <div class="input-field">
           {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion','required')) !!}
         </div>
-        <div class="demo-section k-content">
+        <div class="demo-section k-content" style="padding-top:15px;">
           <input id="dateInicio" placeholder="Fecha Inicio" name="fechaInicio" style="width: 100%" required/>
         </div>
         <script>
@@ -90,7 +89,7 @@ END OF CSS AND JS OF DATE PICKER
           {!! Form::text('horaInicio', null, array('class'=>'form-control ','placeholder'=>'Hora Inicio', 'required')) !!}
         </div>
         <div class="demo-section k-content">
-          <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%" required/>
+          <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%; padding-top:15px;" required/>
         </div>
         <script>
         $(document).ready(function() {
@@ -104,7 +103,7 @@ END OF CSS AND JS OF DATE PICKER
         <div class="input-field">
           {!! Form::text('presupuesto', null, array('class'=>'form-control ','placeholder'=>'Presupuesto', 'required')) !!}
         </div>
-        <div>
+        <div style="padding-top:15px;">
           {!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
         </div>
         {!! Form::close() !!}
