@@ -14,17 +14,18 @@ class CreateSituacionProveedorTable extends Migration
     {
       Schema::create('situacionProveedor', function(Blueprint $table)
       {
-        $table->integer('Evento_idEvento');
-        $table->integer('Proveedor_idProveedor');
+        $table->integer('idCategoria');
+        $table->integer('idProveedor');
         $table->string('situacion')->default('');
+        $table->integer('precio');
 
-        $table->primary(array('Proveedor_idProveedor','Evento_idEvento'));
+        $table->primary(array('idProveedor','idCategoria'));
       });
 
       Schema::table('situacionProveedor', function($table)
       {
-        $table->foreign('Evento_idEvento')->references('idEvento')->on('evento')->onDelete('cascade')->onUpdate('cascade');
-        $table->foreign('Proveedor_idProveedor')->references('idProveedor')->on('proveedor')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('idCategoria')->references('idCategoria')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('idProveedor')->references('idProveedor')->on('proveedor')->onDelete('cascade')->onUpdate('cascade');
       });
     }
 

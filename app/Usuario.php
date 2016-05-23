@@ -39,6 +39,17 @@ class Usuario extends Authenticatable //extends Model
     })->get();
     return $eventos;
   }
+  public static function tipoUsuario($username,$idEvento){
+    $tipo = DB::table('permisosEvento')->where('Usuario_username',$username)->where('Evento_idEvento',$idEvento)->where('tipoUsuario','CREADOR')->first();
+    if(is_null($tipo)){
+      $tipo='COLABORADOR';
+      return $tipo;
+    }
+    else{
+      $tipo='CREADOR';
+      return $tipo;
+    }
+  }
   public static function colaboraciones($username){
     $eventos = Evento::whereHas('usuarios', function ($query) use($username) {
     $query->where('tipoUsuario','COLABORADOR');

@@ -16,6 +16,7 @@ class CreateFiguraTable extends Migration
       {
         $table->integer('idFigura');
         $table->string('imagen');
+        $table->string('nombre')->nullable();
 
         $table->primary('idFigura');
       });

@@ -48,6 +48,7 @@ Route::group(['middleware' => ['web']], function () {
   // route to show the register form
   Route::resource('/register','UsuarioController');
   Route::get('/home/{currentUser}',['middleware' => 'auth','uses' => 'UsuarioController@showHome']);
+  Route::get('/home/{currentUser}/busqueda',['middleware' => 'auth','uses' => 'UsuarioController@filterEvent']);
   Route::post('/home/{currentUser}',['middleware' => 'auth','uses'=>'EventoController@store']);
   Route::get('/home/{currentUser}/evento/{currentEvent}',['middleware' => 'auth','uses' => 'EventoController@showEvent']);
   Route::post('/home/{currentUser}/evento/{currentEvent}',['middleware' => 'auth','uses'=>'EventoController@edit']);
@@ -57,8 +58,8 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('/home/{currentUser}',['middleware' => 'auth','uses' =>'EventoController@store']);
   //Route::get('/home/{currentUser}/evento/{currentEvent}/', array('uses' => 'EventoController@showEvent'));
 
-//  Route::get('auth/confirm/email/{email}/confirm_token/{token}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
   Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+<<<<<<< HEAD
 Route::get('/home/{currentUser}/evento/{currentEvent}/cotizaciones',['middleware' => 'auth','uses' => 'EventoController@cotizaciones']);
 Route::get('/home/{currentUser}/evento/{currentEvent}/colaboradores',['middleware' => 'auth','uses' => 'EventoController@colaboradores']);
 Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/añadir',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
@@ -68,4 +69,18 @@ Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/añadir',['middlewar
 Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
 
 Route::get('/drag',['middleware' => 'guest','uses' => 'ObjetoController@consultarPlano']);
+=======
+  Route::get('/home/{currentUser}/evento/{currentEvent}/cotizaciones',['middleware' => 'auth','uses' => 'EventoController@cotizaciones']);
+  Route::get('/home/{currentUser}/evento/{currentEvent}/colaboradores',['middleware' => 'auth','uses' => 'EventoController@colaboradores']);
+  Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/añadir',['middleware' => 'auth','uses' => 'EventoController@addCollaborator']);
+  Route::post('/home/{currentUser}/evento/{currentEvent}/colaboradores/eliminar',['middleware' => 'auth','uses' => 'EventoController@deleteCollaborator']);
+  Route::get('/home/{currentUser}/evento/{currentEvent}/toDo',['middleware' => 'auth','uses' => 'ToDoController@ShowToDo']);
+  Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/añadir',['middleware' => 'auth','uses' => 'ToDoController@store']);
+  Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
+  Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/modificar',['middleware' => 'auth','uses' => 'ToDoController@edit']);
+
+  Route::get('/evento/{currentEvent}/invitados',['middleware' => 'auth','uses' => 'InvitadoController@showInvitados']);
+  Route::post('/evento/{currentEvent}/invitados',['middleware' => 'auth','uses' => 'InvitadoController@store']);
+  Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+>>>>>>> 9ee9c6bedb56cba151f4c558ddbb79a6da840f4e
 });

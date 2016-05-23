@@ -16,6 +16,7 @@ class CreateEtiquetadoTable extends Migration
       {
         $table->integer('Proveedor_idProveedor');
         $table->integer('Categoria_idCategoria');
+        $table->string('nombe')->default('');
 
         $table->primary(array('Proveedor_idProveedor','Categoria_idCategoria'));
       });

@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invitado extends Model
 {
+  public $timestamps = false;
   protected $table = 'invitado';
   // FALTA MIRAR LAS LLAVES FORANEAS
-  protected $fillable = ['correo','estado','nombre'];
+  protected $fillable = ['correo','estado','nombre','Evento_idEvento'];
   protected $primaryKey = 'idInvitado';
 
   /**

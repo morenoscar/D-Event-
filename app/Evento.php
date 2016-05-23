@@ -24,8 +24,14 @@ class Evento extends Model
   }
 
   public static function nuevoColaborador($user,$idEvento){
-    DB::table('permisosevento')->insert(['Usuario_username'=>$user->username, 'Evento_idEvento'=>$idEvento,'tipoUsuario'=>'COLABORADOR']);
+    DB::table('permisosEvento')->insert(['Usuario_username'=>$user->username, 'Evento_idEvento'=>$idEvento,'tipoUsuario'=>'COLABORADOR']);
   }
+
+  public static function buscarInvitados($idEvento){
+    $guests = DB::table('invitado')->where('Evento_idEvento',$idEvento)->get();
+    return $guests;
+  }
+
   public static function colaboradores($idEvento){
     //$colaboradores = DB::table('permisosevento')->where('Evento_idEvento',$idEvento)->where('tipoUsuario','COLABORADOR')->get();
     $colaboradores = Usuario::whereHas('eventos', function ($query) use($idEvento) {
@@ -34,10 +40,9 @@ class Evento extends Model
     })->get();
     return $colaboradores;
   }
-  public static function eliminarColaborador($user,$idEvento){
-    DB::table('permisosEvento')->where('Usuario_username',$user)->where('Evento_idEvento',$idEvento)->delete();
+  public static function eliminarColaborador($username,$idEvento){
+    DB::table('permisosEvento')->where('Usuario_username',$username)->where('Evento_idEvento',$idEvento)->delete();
   }
-
 
   public function usuarios()
   {

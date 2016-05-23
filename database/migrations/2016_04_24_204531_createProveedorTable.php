@@ -21,7 +21,6 @@ class CreateProveedorTable extends Migration
         $table->string('direccion')->default('');
         $table->string('correoElectronico')->default('');
         $table->string('telefono')->default('');
-        $table->integer('precio')->default(0);
 
         $table->primary('idProveedor');
       });

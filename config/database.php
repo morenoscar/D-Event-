@@ -73,9 +73,13 @@ return [
     'port' => env('DB_PORT', '3306'),
     'database' => 'DEvent',
     'username' => 'root',
+<<<<<<< HEAD
 
     'password' => 'magoscar15',
 
+=======
+    'password' => 'losmillos',
+>>>>>>> 9ee9c6bedb56cba151f4c558ddbb79a6da840f4e
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     //'prefix' => '',

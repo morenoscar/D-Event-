@@ -17,7 +17,7 @@ class CreateCalificacionTable extends Migration
         $table->integer('Proveedor_idProveedor');
         $table->integer('idCalificacion',true);
         $table->string('comentario')->default('');
-        $table->integer('puntaje')->default('-1');
+        $table->integer('puntaje')->default(-1);
 
       });
 

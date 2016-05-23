@@ -31,14 +31,16 @@ END OF CSS AND JS OF DATE PICKER
   <h3>Colaboradores</h3>
 </div>
 <!--<a class="launch-modal" href="#" data-modal-id="modal-login">Editar evento</a>-->
-
+@if($tipoUsuario=='CREADOR')
 <div class="">
   <button type="button" class="launch-modal" data-modal-id="modal-add-coll">Añadir Colaborador</button>
 </div>
+@endif
 
 <div>
   @foreach ($colaboradores as $colaborador)
     <p>{!!$colaborador->username!!}</p>
+    @if($tipoUsuario=='CREADOR')
     <div class="">
       {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/colaboradores/eliminar']) !!}
         {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
@@ -46,6 +48,7 @@ END OF CSS AND JS OF DATE PICKER
         {!! Form::button('Eliminar colaborador', array('type'=>'submit')) !!}
       {!! Form::close() !!}
     </div>
+    @endif
   @endforeach
 </div>
 <!--
@@ -78,8 +81,6 @@ EL FORMULARIO DE AÑADIR COLABORADOR
 <!--
 TERMINA EL FORMULARIO DE AÑADIR COLABORADOR
 -->
-
-
 @stop
 
 @section('footer-include')

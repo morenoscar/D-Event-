@@ -16,7 +16,7 @@ class ToDo extends Model
   * Get the post that owns the comment.
   */
   public static function tarjetasEvento($idEvento){
-    $tarjetas = DB::table('todo')->where('Evento_idEvento',$idEvento)->get();
+    $tarjetas = DB::table('toDo')->where('Evento_idEvento',$idEvento)->get();
     return $tarjetas;
   }
 
