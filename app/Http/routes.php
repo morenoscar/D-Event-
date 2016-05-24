@@ -69,9 +69,13 @@ Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/añadir',['middlewar
 Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
 
 Route::get('/drag',['middleware' => 'guest','uses' => 'ObjetoController@consultarPlano']);
+
+
   Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/modificar',['middleware' => 'auth','uses' => 'ToDoController@edit']);
 
   Route::get('/evento/{currentEvent}/invitados',['middleware' => 'auth','uses' => 'InvitadoController@showInvitados']);
   Route::post('/evento/{currentEvent}/invitados',['middleware' => 'auth','uses' => 'InvitadoController@store']);
+
   Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
+
 });

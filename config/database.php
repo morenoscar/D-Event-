@@ -73,7 +73,9 @@ return [
     'port' => env('DB_PORT', '3306'),
     'database' => 'DEvent',
     'username' => 'root',
+
     'password' => '1026',
+
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     //'prefix' => '',
