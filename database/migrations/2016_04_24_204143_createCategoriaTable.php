@@ -17,13 +17,21 @@ class CreateCategoriaTable extends Migration
         $table->integer('idCategoria');
         $table->string('nombre')->unique();
         $table->string('descripcion')->default('');
-        $table->integer('Evento_idEvento');
 
         $table->primary('idCategoria');
       });
 
-      Schema::table('categoria', function($table)
+      Schema::create('categoriaEvento', function(Blueprint $table)
       {
+        $table->integer('idCategoria');
+        $table->integer('Evento_idEvento');
+
+        $table->primary(array('idCategoria','Evento_idEvento'));
+      });
+
+      Schema::table('categoriaEvento', function($table)
+      {
+        $table->foreign('idCategoria')->references('idCategoria')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
         $table->foreign('Evento_idEvento')->references('idEvento')->on('evento')->onDelete('cascade')->onUpdate('cascade');
       });
     }
@@ -36,5 +44,6 @@ class CreateCategoriaTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categoria');
+        Schema::dropIfExists('categoriaEvento');
     }
 }

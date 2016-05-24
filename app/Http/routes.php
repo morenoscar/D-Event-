@@ -75,6 +75,11 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('/evento/{currentEvent}/invitados/eliminar',['middleware' => 'auth','uses' => 'InvitadoController@delete']);
   Route::post('/evento/{currentEvent}/invitados/busqueda',['middleware' => 'auth','uses' => 'InvitadoController@filterInvitado']);
   Route::get('/evento/{currentEvent}/invitado/{email}',['middleware' => 'guest','uses' => 'InvitadoController@confirmInvitation']);
-  Route::get('/evento/{currentEvent}/carrito_compras',['middleware' => 'auth','uses' => 'ProveedorController@showCarritoCompras']);
-  Route::get('/evento/{currentUser}/cotizaciones',['middleware' => 'auth','uses' => 'ProveedorController@showCotizacion']);
+  Route::get('/evento/{currentEvent}/carrito_compras',['middleware' => 'auth','uses' => 'CategoriaController@showCarritoCompras']);
+  Route::post('/evento/{currentEvent}/carrito_compras/eliminar',['middleware' => 'auth','uses' => 'CategoriaController@deleteCarrito']);
+  Route::post('/evento/{currentEvent}/carrito_compras/{idCategoria}/agregar',['middleware' => 'auth','uses' => 'CategoriaController@addCarrito']);
+  Route::get('/evento/{currentEvent}/cotizaciones',['middleware' => 'auth','uses' => 'CategoriaController@showCotizacion']);
+  Route::post('/evento/{currentEvent}/cotizaciones/eliminar',['middleware' => 'auth','uses' => 'CategoriaController@deleteCotizacion']);
+  Route::get('/evento/{currentEvent}/proveedores/{idCategoria}',['middleware' => 'auth','uses' => 'CategoriaController@showAddSupppliers']);
+  Route::post('/evento/{currentEvent}/proveedores/{idCategoria}/agregar',['middleware' => 'auth','uses' => 'CategoriaController@addSuppplier']);
 });

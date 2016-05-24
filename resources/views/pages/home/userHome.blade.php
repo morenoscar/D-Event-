@@ -104,7 +104,7 @@ END OF CSS AND JS OF DATE PICKER
           {!! Form::text('presupuesto', null, array('class'=>'form-control ','placeholder'=>'Presupuesto', 'required')) !!}
         </div>
         <div style="padding-top:15px;">
-          {!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+          {!! Form::button('Crear Evento', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
         </div>
         {!! Form::close() !!}
       </div>

@@ -28,7 +28,7 @@ class CreateInvitadoTable extends Migration
         $table->integer('idRegaloAporte',true);
         $table->string('nombreRegaloAporte')->default('');
         $table->integer('Evento_idEvento');
-        $table->integer('Invitado_idInvitado');
+        $table->integer('Invitado_idInvitado')->nullable();
       });
 
       Schema::create('invitadoEvento', function(Blueprint $table)

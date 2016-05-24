@@ -26,6 +26,44 @@ END OF CSS AND JS OF DATE PICKER
 @stop
 
 @section('content')
+@foreach ($categorias as $categoria)
+<p>{!!$categoria->nombre!!}</p>
+ @foreach (($categoria->misProveedoresCarrito($categoria->idCategoria)) as $proveedor)
+ <p> {!! $proveedor->nombre !!} </p>
+<div class="">
+		<button type="button" class="launch-modal" data-modal-id="modal-confirm-delete"> X </button>
+</div>
+<!--
+FORMA CONFIRMAR ELIMINACION
+-->
+<div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title" id="modal-login-label">¿Realmente desea eliminar al proveedor?</h3>
+    </div>
+    <div class="modal-body">
+      {!! Form::open(['url' => '/evento/{$currentEvent->idEvento}/carrito_compras/eliminar']) !!}
+        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+        {!! Form::hidden('idProveedor', $proveedor->idProveedor) !!}
+        {!! Form::hidden('idCategoria', $categoria->idCategoria) !!}
+      <div>
+        {!! Form::button('Si', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+        <button type="button" class="btn waves-effect waves-light" data-dismiss="modal">No</button>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+</div>
+@endforeach
+<!--
+TERMINA LA FORMA DE CONFIRMAR ELIMINACION
+-->
+@endforeach
 
 
 
