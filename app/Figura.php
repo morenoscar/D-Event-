@@ -13,8 +13,8 @@ class Figura extends Model
   /**
      * Get the user that owns the phone.
      */
-    public function objeto()
+    public function ubicacion()
     {
-        return $this->belongsTo('App\Objeto');
+        return $this->belongsTo('App\Ubicacion');
     }
 }

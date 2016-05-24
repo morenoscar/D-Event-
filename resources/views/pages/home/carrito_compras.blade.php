@@ -1,7 +1,7 @@
 @extends('layouts.evento')
 
 @section('title-page')
-<title>{!!$currentEvent->nombre!!} - Cotizaciones</title>
+<title>{!!$currentEvent->nombre!!}</title>
 @stop
 @section('header-include')
 <!--
@@ -27,7 +27,8 @@ END OF CSS AND JS OF DATE PICKER
 
 @section('content')
 
-  <h3>Cotizaciones</h3>
+
+
 @stop
 
 @section('footer-include')
@@ -48,6 +49,6 @@ errors = errors + '{{ $error }}\n';
 
 if (errors != "")
 {
-  alert(errors);
+	alert(errors);
 }
 </script>

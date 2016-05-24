@@ -1,4 +1,4 @@
-@extends('layouts.colaboraciones')
+@extends('layouts.home')
 
 @section('title-page')
 <title>Home - {!! $currentUser->nombre !!}</title>
@@ -28,15 +28,15 @@ END OF CSS AND JS OF DATE PICKER
 
 @section('content')
 <div class="contentHeader">
-  <h3>Colaborando</h3>
-  {!! Form::open(['url' => '/home/{ $currentUser->nombre }/colaborando/busqueda', 'id' => 'searchform']) !!}
+  <h3>Historial de Eventos</h3>
+  {!! Form::open(['url' => '/home/{ $currentUser->nombre }/busqueda', 'id' => 'searchform']) !!}
     {!! Form::text('query', null, array('class'=>'form-control ','placeholder'=>'Buscar')) !!}
     {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
   {!! Form::close() !!}
+  <!--</div>-->
 </div>
 
-<div class="group-block">
-@foreach ($colaboraciones as $evento)
+@foreach ($eventFinish as $evento)
 <div class="block">
   <div class="image-block">
     <img src="{!! $evento->foto !!}"/>
@@ -61,3 +61,19 @@ END OF CSS AND JS OF DATE PICKER
 <script src="../js/modalAssets/jquery.backstretch.min.js"></script>
 <script src="../js/modalAssets/scripts.js"></script>
 @stop
+
+
+<script type="text/javascript">
+var errors = "";
+@if (count($errors) > 0)
+
+@foreach ($errors->all() as $error)
+errors = errors + '{{ $error }}\n';
+@endforeach
+@endif
+
+if (errors != "")
+{
+  alert("Algo salio mal:\n" + errors);
+}
+</script>

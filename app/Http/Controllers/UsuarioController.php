@@ -12,6 +12,7 @@ use Hash;
 use Illuminate\Support\Facades\Input;
 use App\Usuario;
 use App\TipoEvento;
+use App\Evento;
 // Auth
 use Auth;
 use Session;
@@ -24,7 +25,7 @@ class UsuarioController extends Controller
     'apellido' => ['required'],
     'correo' => ['required','unique:usuario,correo','email'],
     'nombre' => ['required'],
-    'password' => ['required','min:6','regex:/[A-Z]^[a-zA-Z0-9!$#%]+$/'],
+    'password' => ['required','min:6'],//,'regex:/[A-Z]^[a-zA-Z0-9!$#%]+$/'],
     'username' => ['required','unique:usuario,username'],
     'copypassword' => ['required','same:password']
   ];
@@ -163,9 +164,19 @@ public function doLogout()
   return redirect('/signin');
 }
 
-public function filterEvent()
+public function filterEvent(Request $request)
 {
-  echo 'entre';
+  $currentUser = Usuario::find(Auth::id());
+  $misEventos = Evento::filterEvent(Input::get('query'));
+  $eventTypes=TipoEvento::obtenerTipos();
+  return view('pages.home.userHome',compact('currentUser','eventTypes','misEventos'));
+}
+
+public function historial()
+{
+  $eventFinish = Evento::getEventFinish(Auth::id());
+  $currentUser = Usuario::find(Auth::id());
+  return view('pages.home.historial',compact('currentUser','eventFinish'));
 }
 
 }

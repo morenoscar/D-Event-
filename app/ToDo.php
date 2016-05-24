@@ -9,7 +9,6 @@ class ToDo extends Model
   public $timestamps = false;
   protected $table = 'toDo';
   protected $fillable = ['nota','fecha','estado','Evento_idEvento'];
-  // FALTA LA LLAVE FORANEA
   protected $primaryKey = 'idItem';
 
   /**

@@ -13,6 +13,7 @@ BEGIN OF CSS OF MODAL FORM
 <!--
 END OF CSS OF MODAL FORM
 -->
+
 <!--
 BEGIN OF CSS AND JS OF DATE PICKER
 -->
@@ -26,18 +27,17 @@ END OF CSS AND JS OF DATE PICKER
 @stop
 
 @section('content')
-@foreach ($invitados as $invitado)
-	<p>{!!$invitado->nombre!!}</p>
-	<p>{!!$invitado->correo!!}</p>
-@endforeach
+<div class="contentHeader">
+  <h3>Invitados</h3>
+  {!! Form::open(['url' => '/evento/{ $currentEvent->idEvento }/invitados/busqueda', 'id' => 'searchform']) !!}
+		{!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+    {!! Form::text('query', null, array('class'=>'form-control ','placeholder'=>'Buscar')) !!}
+    {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+  {!! Form::close() !!}
+</div>
+
 <div class="">
 	<button type="button" class="launch-modal" data-modal-id="modal-add-guest">Agregar Invitado</button>
-</div>
-<div class="">
-	{!! Form::open(['url' => '/evento/{$currentEvent->idEvento}/invitados/eliminar']) !!}
-	{!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
-	{!! Form::button('Eliminar', array('type'=>'submit')) !!}
-	{!! Form::close() !!}
 </div>
 
 <!--
@@ -74,6 +74,54 @@ EL FORMULARIO DE ENVIAR INVITACION A UN EVENTO
 <!--
 TERMINA EL FORMULARIO DE ENVIAR INVITACION A UN EVENTO
 -->
+
+
+@foreach ($invitados as $invitado)
+<p>{!!$invitado->nombre!!}</p>
+<p>{!!$invitado->correo!!}</p>
+@if($tipoUsuario=='CREADOR')
+<div class="">
+	<div class="">
+		<button type="button" class="launch-modal" data-modal-id="modal-confirm-delete">Eliminar Invitado</button>
+	</div>
+</div>
+<!--
+FORMA CONFIRMAR ELIMINACION
+-->
+<div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title" id="modal-login-label">¿Realmente desea eliminar al invitado?</h3>
+    </div>
+    <div class="modal-body">
+      {!! Form::open(['url' => '/evento/{$currentEvent->idEvento}/invitados/eliminar']) !!}
+        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+				{!! Form::hidden('idInvitado', $invitado->idInvitado) !!}
+      <div>
+        {!! Form::button('Si', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+        <button type="button" class="btn waves-effect waves-light" data-dismiss="modal">No</button>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+</div>
+<!--
+TERMINA LA FORMA DE CONFIRMAR ELIMINACION
+-->
+
+@endif
+@endforeach
+
+
+
+
+
+
 
 @stop
 

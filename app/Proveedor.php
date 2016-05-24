@@ -6,31 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model
 {
+  public $timestamps = false;
   protected $table = 'proveedor';
   protected $fillable = ['nombre','descripcion','foto','direccion','correoElectronico','telefono','precio'];
   protected $primaryKey = 'idProveedor';
 
   /**
-  * El evento pertenece a muchos proveedores.
+  * The roles that belong to the user.
   */
-  public function eventos()
+  public function categoriasSituacion()
   {
-    return $this->belongsToMany('App\Evento', 'situacionProveedor', 'Proveedor_idProveedor', 'Evento_idEvento')->withPivot('situacion');
+    return $this->belongsToMany('App\Categoria', 'situacionProveedor', 'idProveedor', 'idCategoria')->withPivot('situacion','precio');
   }
 
   /**
   * The roles that belong to the user.
   */
-  public function proveedores()
+  public function categoriasEtiquetado()
   {
-    return $this->belongsToMany('App\Categoria', 'Etiquetado', 'Proveedor_idProveedor', 'Categoria_idCategoria');
+    return $this->belongsToMany('App\Categoria', 'etiquetado', 'idProveedor', 'idCategoria');
   }
-  
+
   /**
-     * Get the comments for the blog post.
-     */
-    public function calificaciones()
-    {
-        return $this->hasMany('App\Calificacion');
-    }
+  * Get the comments for the blog post.
+  */
+  public function calificaciones()
+  {
+    return $this->hasMany('App\Calificacion');
+  }
 }

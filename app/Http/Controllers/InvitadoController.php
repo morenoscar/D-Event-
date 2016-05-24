@@ -45,32 +45,45 @@ class InvitadoController extends Controller
   {
     $currentEvent = Evento::find($idEvento);
     $currentUser = Usuario::find(Auth::id());
-    $invitados = Evento::buscarInvitados($idEvento);
-    return view('pages.home.invitado',compact('currentEvent','currentUser','invitados'));
+    $tipoUsuario = Usuario::tipoUsuario($currentUser->username,$idEvento);
+    $invitados = Evento::misInvitados($idEvento);
+    return view('pages.home.invitado',compact('currentEvent','currentUser','invitados','tipoUsuario'));
   }
 
   public function store(Request $request)
   {
 
-    //$this->validate($request, $this->rulesRegister, $this->messages);
+    $this->validate($request, $this->rulesRegister, $this->messages);
 
-    Invitado::create(array(
+    $invitado = Invitado::create(array(
       'correo' => Input::get('correo'),
-      'estado' => 'NO_CONFIRMADO',
       'nombre' => Input::get('nombre'),
-      'Evento_idEvento' => 3,
-      'Objeto_idObjeto' => 1,
-      'RegaloAporte_idRegaloAporte' => 1,
     ));
-
+    $invitado->agregarInvitadosEvento(Input::get('idEvento'));
+    $evento = Evento::find(Input::get('idEvento'));
     $data['nombre'] = Input::get('nombre');
     $data['correo'] = Input::get('correo');
-    $data['evento'] = Input::get('idEvento');
+    $data['evento'] = $evento;
 
     Mail::send('mails.register',['data' => $data],function($mail) use ($data){
-      $mail->subject('Confirma tu cuenta');
+      $mail->subject('Invitacion evento: '.$data['evento']->nombre);
       $mail->to($data['correo'],$data['nombre']);
     });
-    return redirect('/');
+    return $this->showInvitados($evento->idEvento,null);
+  }
+
+  public function delete(Request $request)
+  {
+    Invitado::destroy(Input::get('idInvitado'));
+    return $this->showInvitados(Input::get('idEvento'),null);
+  }
+
+  public function filterInvitado(Request $request)
+  {
+    $currentEvent = Evento::find(Input::get('idEvento'));
+    $currentUser = Usuario::find(Auth::id());
+    $tipoUsuario = Usuario::tipoUsuario($currentUser->username,Input::get('idEvento'));
+    $invitados = Invitado::filterGuest(Input::get('query'),Input::get('idEvento'));
+    return view('pages.home.invitado',compact('currentEvent','currentUser','invitados','tipoUsuario'));
   }
 }

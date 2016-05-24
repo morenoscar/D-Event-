@@ -1,4 +1,4 @@
-<!-- CAMBIAR EL NOMBRE DE ESA CLASE -->
+  <!-- CAMBIAR EL NOMBRE DE ESA CLASE -->
 <div class="sbPrincipalContainer">
 
 <div class="sbSecondContainer">
@@ -14,7 +14,8 @@
   <li><a href="/informacion">Ver perfil</a><li>
   <li><a href="/home/{!! $currentUser->username !!}">Eventos</a><li>
   <li><a href="/historial">Historial</a><li>
-  <li><a href="/home/{!! $currentUser->username !!}/colabora">Eventos a Colaborar</a><li>
+  <li><a href="/home/{!! $currentUser->username !!}/colaborando">Eventos a Colaborar</a><li>
+  <li><a href="/calendario">Calendario</a><li>
   </ul>
 </div>
 <div class="premium">

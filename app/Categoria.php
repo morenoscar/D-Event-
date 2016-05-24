@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
+  public $timestamps = false;
   protected $table = 'categoria';
   protected $fillable = ['nombre','descripcion'];
   protected $primaryKey = 'idCategoria';
@@ -13,9 +14,17 @@ class Categoria extends Model
   /**
   * The roles that belong to the user.
   */
-  public function proveedores()
+  public function proveedoresSituacion()
   {
-    return $this->belongsToMany('App\Proveedor', 'Etiquetado', 'Proveedor_idProveedor', 'Categoria_idCategoria');
+    return $this->belongsToMany('App\Proveedor', 'situacionProveedor', 'idCategoria', 'idProveedor')->withPivot('situacion','precio');
+  }
+
+  /**
+  * The roles that belong to the user.
+  */
+  public function proveedoresEtiquetado()
+  {
+    return $this->belongsToMany('App\Proveedor', 'etiquetado', 'idCategoria', 'idProveedor');
   }
 
   /**

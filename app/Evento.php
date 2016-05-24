@@ -27,8 +27,10 @@ class Evento extends Model
     DB::table('permisosEvento')->insert(['Usuario_username'=>$user->username, 'Evento_idEvento'=>$idEvento,'tipoUsuario'=>'COLABORADOR']);
   }
 
-  public static function buscarInvitados($idEvento){
-    $guests = DB::table('invitado')->where('Evento_idEvento',$idEvento)->get();
+  public static function misInvitados($idEvento){
+    $guests = Invitado::whereHas('eventos', function ($query) use($idEvento) {
+    $query->where('Evento_idEvento',$idEvento);
+    })->get();
     return $guests;
   }
 
@@ -42,6 +44,20 @@ class Evento extends Model
   }
   public static function eliminarColaborador($username,$idEvento){
     DB::table('permisosEvento')->where('Usuario_username',$username)->where('Evento_idEvento',$idEvento)->delete();
+  }
+
+  public static function filterEvent($query)
+  {
+    return DB::table('evento')->where('nombre','like','%'.$query.'%')->get();
+  }
+
+  public static function getEventFinish($idUsuario)
+  {
+    $colaboradores = Evento::whereHas('usuarios', function ($query) use($idUsuario) {
+    $query->where('Usuario_username',$idUsuario);
+    $query->where('estado','INACTIVO');
+    })->get();
+    return $colaboradores;
   }
 
   public function usuarios()
@@ -79,19 +95,18 @@ class Evento extends Model
   {
     return $this->hasMany('App\RegaloAporte');
   }
-  /**
-  * Get the comments for the blog post.
-  */
+
   public function invitados()
   {
-    return $this->hasMany('App\Invitado');
+    return $this->belongsToMany('App\Invitado', 'invitadoEvento','Evento_idEvento', 'Invitado_idInvitado')->withPivot('estado');
   }
+
   /**
   * Get the comments for the blog post.
   */
-  public function objetos()
+  public function ubicaciones()
   {
-    return $this->hasMany('App\Objeto');
+    return $this->hasMany('App\Ubicacion');
   }
   /**
   * Get the comments for the blog post.

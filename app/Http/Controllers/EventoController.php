@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Input;
 use Auth;
 use Session;
 use DB;
+use Mail;
 
 class EventoController extends Controller
 {
@@ -123,8 +124,16 @@ class EventoController extends Controller
     $idEvento = Input::get('idEvento');
     $user=Evento::buscarUsuarioEmail($email);
     if(is_null($user)){
-      echo "No existe ese usuario";
-      $errors = new MessageBag(['email' => ['No existe un usuario con ese correo electronico']]);
+      $errors = new MessageBag(['email' => ['No existe un usuario con ese correo electronico. Se le ha enviado un correo para que se registre en D-Event.']]);
+
+      $data['usuario'] = Usuario::find(Auth::id());
+      $data['correo'] = Input::get('correo');
+
+      Mail::send('mails.enjoyus',['data' => $data],function($mail) use ($data){
+        $mail->subject('Unete a D-Event!');
+        $mail->to($data['correo']);
+      });
+
       return redirect()->back()->withErrors($errors);
     }
     else{

@@ -1,4 +1,3 @@
-<!-- CAMBIAR EL NOMBRE DE ESA CLASE -->
 <div class="sbPrincipalContainer">
 
 <div class="sbSecondContainer">
@@ -13,8 +12,8 @@
   <ul>
   <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}">Informacion General</a><li>
   <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}/toDo">To-Do List</a><li>
-  <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}/cotizaciones">Cotizaciones</a><li>
-  <li><a href="">Carrito de Compras</a><li>
+  <li><a href="/evento/{!! $currentEvent->idEvento !!}/cotizaciones">Cotizaciones</a><li>
+  <li><a href="/evento/{!! $currentEvent->idEvento !!}/carrito_compras">Carrito de Compras</a><li>
   <li><a href="/evento/{!! $currentEvent->idEvento !!}/invitados">Invitados</a><li>
   <li><a href="/home/{!! $currentUser->username !!}/evento/{!! $currentEvent->idEvento !!}/colaboradores">Colaboradores</a><li>
   <li><a href="">Regalos/Aportes</a><li>

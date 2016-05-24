@@ -17,8 +17,8 @@ class CreateInvitadoTable extends Migration
         $table->string('correo')->unique();
         $table->integer('idInvitado',true);
         $table->string('nombre')->default('');
-        $table->integer('Ubicacion_idUbicacion');
-        $table->integer('RegaloAporte_idRegaloAporte');
+        $table->integer('Ubicacion_idUbicacion')->nullable();
+        $table->integer('RegaloAporte_idRegaloAporte')->nullable();
         $table->integer('Evento_idEvento');
       });
 
@@ -34,7 +34,7 @@ class CreateInvitadoTable extends Migration
       Schema::create('invitadoEvento', function(Blueprint $table)
       {
         $table->integer('Invitado_idInvitado');
-        $table->integer('Evento_idEvento',false);
+        $table->integer('Evento_idEvento');
         $table->string('estado')->default('NO_CONFIRMADO');
         $table->primary(array('Invitado_idInvitado','Evento_idEvento'));
       });

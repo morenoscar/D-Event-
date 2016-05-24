@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Objeto extends Model
+class Ubicacion extends Model
 {
-  protected $table = 'objeto';
+  public $timestamps = false;
+  protected $table = 'ubicacion';
   // FALTAN LAS LLAVES FORANEAS
   protected $fillable = ['posicionX','posicionY','tamano'];
-  protected $primaryKey = 'idObjeto';
+  protected $primaryKey = 'idUbicacion';
 
   /**
   * Get the comments for the blog post.

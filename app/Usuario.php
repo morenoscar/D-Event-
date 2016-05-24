@@ -36,6 +36,7 @@ class Usuario extends Authenticatable //extends Model
     $eventos = Evento::whereHas('usuarios', function ($query) use($username) {
     $query->where('tipoUsuario','CREADOR');
     $query->where('Usuario_username',$username);
+    $query->where('estado','ACTIVO');
     })->get();
     return $eventos;
   }

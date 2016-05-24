@@ -29,8 +29,8 @@ END OF CSS AND JS OF DATE PICKER
 @section('content')
 <div class="contentHeader">
   <h3>Mis Eventos</h3>
-  {!! Form::open(['url' => '/home/{{ $currentUser->nombre }}', 'id' => 'searchform']) !!}
-    {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Buscar')) !!}
+  {!! Form::open(['url' => '/home/{ $currentUser->nombre }/busqueda', 'id' => 'searchform']) !!}
+    {!! Form::text('query', null, array('class'=>'form-control ','placeholder'=>'Buscar')) !!}
     {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
   {!! Form::close() !!}
   <!--</div>-->
