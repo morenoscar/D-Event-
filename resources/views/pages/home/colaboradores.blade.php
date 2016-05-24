@@ -37,20 +37,47 @@ END OF CSS AND JS OF DATE PICKER
 </div>
 @endif
 
+@foreach ($colaboradores as $colaborador)
 <div>
-  @foreach ($colaboradores as $colaborador)
     <p>{!!$colaborador->username!!}</p>
     @if($tipoUsuario=='CREADOR')
-    <div class="">
-      {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/colaboradores/eliminar']) !!}
-        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
-        {!! Form::hidden('username', $colaborador->username) !!}
-        {!! Form::button('Eliminar colaborador', array('type'=>'submit')) !!}
-      {!! Form::close() !!}
-    </div>
+      <div class="">
+        <button type="button" class="launch-modal" data-modal-id="modal-confirm-delete">Eliminar Colaborador</button>
+      </div>
+      <!--
+      FORMA CONFIRMAR ELIMINACION
+      -->
+      <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            <h3 class="modal-title" id="modal-login-label">¿Realmente desea eliminar el colaborador?</h3>
+          </div>
+          <div class="modal-body">
+            {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/colaboradores/eliminar']) !!}
+            {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+            {!! Form::hidden('username', $colaborador->username) !!}
+              {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+            <div>
+              {!! Form::button('Si', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+              <button type="button" class="btn waves-effect waves-light" data-dismiss="modal">No</button>
+            </div>
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+      </div>
+      <!--
+      TERMINA LA FORMA DE CONFIRMAR ELIMINACION
+      -->
     @endif
-  @endforeach
 </div>
+
+  @endforeach
+
 <!--
 EL FORMULARIO DE AÑADIR COLABORADOR
 -->

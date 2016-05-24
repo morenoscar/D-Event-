@@ -118,7 +118,7 @@ public function doLogin()
     return redirect('/home/'.Input::get('username'));
   }
   else {
-    $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+    $errors = new MessageBag(['password' => ['El correo o la contraseña son invalidos']]);
     return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
   }
 }
