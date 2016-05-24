@@ -24,7 +24,7 @@
 			<div class="error">
 				<ul>
 					@foreach($errors->get('password') as $error )
-					<li>{{ $error }}</br></li>
+					<li>* {{ $error }}</br></li>
 					@endforeach
 				</ul>
 			</div>

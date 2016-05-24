@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests;
 use App;
 use App\Evento;
-
 use App\Usuario;
-
-// Validator
+use App\TipoEvento;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Auth;
@@ -42,7 +39,8 @@ class EventoController extends Controller
     $currentEvent=Evento::find($idEvento);
     $currentUser=Usuario::find($username);
     $tipoUsuario=Usuario::tipoUsuario($username,$idEvento);
-    return view('pages.home.evento',compact('currentEvent','currentUser','tipoUsuario'));
+    $eventTypes=TipoEvento::obtenerTipos();
+    return view('pages.home.evento',compact('currentEvent','currentUser','tipoUsuario','eventTypes'));
   }
 
   private function modify_date($date)
@@ -94,16 +92,30 @@ class EventoController extends Controller
   public function edit(Request $request){
     $data = Input::all();
     $currentEvent = Evento::find($data['idEvento']);
+    if(Input::get('estado')=='2'){
+      $estado = 'INACTIVO';
+    }
     $currentUser = Usuario::find(Auth::id());
     $keys = array_keys($data);
     foreach ($keys as $key) {
       if (!empty($data[$key]) and $key!='_token') {
-        if($key == 'fechaInicio' || $key == 'fechaFin')
-        {
-          $currentEvent->$key = $this->modify_date($data[$key]);
+        if($key == 'estado'){
+          if(Input::get('estado')=='1'){
+            $currentEvent->$key = 'ACTIVO';
+          }
+          if(Input::get('estado')=='2'){
+            $currentEvent->$key = 'INACTIVO';
+          }
         }
-        else {
-          $currentEvent->$key = $data[$key];
+        else{
+          if($key == 'fechaInicio' || $key == 'fechaFin')
+          {
+            $currentEvent->$key = $this->modify_date($data[$key]);
+          }
+          else {
+            $currentEvent->$key = $data[$key];
+          }
+
         }
       }
     }
@@ -130,7 +142,7 @@ class EventoController extends Controller
     else{
       Evento::nuevoColaborador($user,$idEvento);
     }
-    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento);
+    return redirect('/home/'.$currentUser->username.'/evento/'.$idEvento.'/colaboradores');
   }
 
   public function cotizaciones($username,$idEvento)

@@ -44,13 +44,45 @@ END OF CSS AND JS OF DATE PICKER
 <div class="">
   <button type="button" class="launch-modal" data-modal-id="modal-edit-event">Modificar Evento</button>
 </div>
+<div class="">
+  <button type="button" class="launch-modal" data-modal-id="modal-confirm-delete">Eliminar Evento</button>
+</div>
 
+<!--
 <div class="">
   {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/eliminar']) !!}
     {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
     {!! Form::button('Eliminar evento', array('type'=>'submit')) !!}
   {!! Form::close() !!}
+</div> -->
+
+<!--
+FORMA CONFIRMAR ELIMINACION
+-->
+<div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title" id="modal-login-label">¿Realmente desea eliminar el evento?</h3>
+    </div>
+    <div class="modal-body">
+      {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/eliminar']) !!}
+        {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
+      <div>
+        {!! Form::button('Si', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
+        <button type="button" class="btn waves-effect waves-light" data-dismiss="modal">No</button>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
 </div>
+</div>
+<!--
+TERMINA LA FORMA DE CONFIRMAR ELIMINACION
+-->
 
 <!--
 EL FORMULARIO DE ACTUALIZAR EVENTO
@@ -73,7 +105,7 @@ EL FORMULARIO DE ACTUALIZAR EVENTO
         {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre')) !!}
       </div>
       <div class="input-field">
-        {!! Form::text('TipoEvento_idTipoEvento', null, array('class'=>'form-control ','placeholder'=>'Tipo Evento')) !!}
+        {!! Form::select('TipoEvento_idTipoEvento',(['0' => 'Tipo de evento'] + $eventTypes),null,array('class' => 'form-control')) !!}
       </div>
       <div class="input-field">
         {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion')) !!}
@@ -108,6 +140,9 @@ EL FORMULARIO DE ACTUALIZAR EVENTO
       </div>
       <div class="input-field">
         {!! Form::text('presupuesto', null, array('class'=>'form-control ','placeholder'=>'Presupuesto')) !!}
+      </div>
+      <div class="input-field">
+        {!! Form::select('estado',(['0' => 'Estado del evento','1' => 'Activo','2' => 'Inactivo']),null,array('class' => 'form-control','required')) !!}
       </div>
       <div>
         {!! Form::button('Aceptar', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}

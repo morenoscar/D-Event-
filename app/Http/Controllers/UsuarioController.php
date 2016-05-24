@@ -24,7 +24,7 @@ class UsuarioController extends Controller
     'apellido' => ['required'],
     'correo' => ['required','unique:usuario,correo','email'],
     'nombre' => ['required'],
-    'password' => ['required','min:6','regex:/[A-Z]^[a-zA-Z0-9!$#%]+$/'],
+    'password' => ['required','min:6'],//,'regex:/[A-Z]^[a-zA-Z0-9!$#%]+$/'],
     'username' => ['required','unique:usuario,username'],
     'copypassword' => ['required','same:password']
   ];
@@ -117,7 +117,7 @@ public function doLogin()
     return redirect('/home/'.Input::get('username'));
   }
   else {
-    $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+    $errors = new MessageBag(['password' => ['El correo o la contraseña son invalidos']]);
     return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
   }
 }
