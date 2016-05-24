@@ -50,9 +50,12 @@ FORMA CONFIRMAR ELIMINACION
       <div class="modal-body">
         {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}/eliminar']) !!}
         {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
-        <div>
-          {!! Form::button('Si', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
-          <button type="button" class="btn waves-effect waves-light" data-dismiss="modal">No</button>
+        <div align="center">
+          {!! Form::button('<i class="fa fa-check" style="color:white;" ></i><a class="butstyle">Si</a>'
+          , array('class'=>'btn waves-effect waves-light', 'type'=>'submit','style'=>'width:30%;background-color:#13F229;')) !!}
+          <button type="button" class="btn waves-effect waves-light" style="width:30%; background-color:#C9302C;"data-dismiss="modal">
+            <i class="fa fa-times" style="color:white;" ></i><a class="butstyle">No</a>
+          </button>
         </div>
         {!! Form::close() !!}
       </div>
@@ -111,16 +114,16 @@ Contain the main information of an event
         </table>
         <div align="center">
           @if($tipoUsuario=='CREADOR')
-          <div class="col-m-6" style="width:20%">
-            <button type="button" class="btn btn-info launch-modal" style="background-color:#31B0D5; "  class="launch-modal" data-modal-id="modal-edit-event">
-              <i class="fa fa-pencil" style="color:white;" ></i><a class="butstyle">Modificar</a>
-            </button>
-          </div>
-          <div  class="col-m-6" style="width:20%">
-            <button type="button" class="btn btn-info launch-modal" style="background-color:#C9302C; "  class="launch-modal" data-modal-id="modal-confirm-delete">
-              <i class="fa fa-trash" style="color:white;"></i><a class="butstyle">Eliminar</a>
-            </button>
-          </div>
+
+          <button type="button" class="btn btn-info launch-modal" style="background-color:#31B0D5; width:30%;"  class="launch-modal" data-modal-id="modal-edit-event">
+            <i class="fa fa-pencil" style="color:white;" ></i><a class="butstyle">Modificar</a>
+          </button>
+
+
+          <button type="button" class="btn btn-info launch-modal" style="background-color:#C9302C; width:30%"  class="launch-modal" data-modal-id="modal-confirm-delete">
+            <i class="fa fa-trash" style="color:white;"></i><a class="butstyle">Eliminar</a>
+          </button>
+
           @endif
           <!--
           EL FORMULARIO DE ACTUALIZAR EVENTO
@@ -133,23 +136,23 @@ Contain the main information of an event
                 <button type="button" class="close" data-dismiss="modal">
                   <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                <h3 class="modal-title" id="modal-login-label">Editar evento</h3>
+                <h3 class="modal-title title" id="modal-login-label">Editar evento</h3>
                 <p>Ingrese solo los datos que quiere cambiar:</p>
               </div>
               <div class="modal-body">
                 {!! Form::open(['url' => '/home/{$currentUser->username}/evento/{$currentEvent->idEvento}']) !!}
                 {!! Form::hidden('idEvento', $currentEvent->idEvento) !!}
-                <div class="input-field">
+                <div class="input-field" style="padding-top:10px;">
                   {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre')) !!}
                 </div>
-                <div class="input-field">
+                <div class="input-field" style="padding-top:10px;">
                   {!! Form::select('TipoEvento_idTipoEvento',(['0' => 'Tipo de evento'] + $eventTypes),null,array('class' => 'form-control')) !!}
                 </div>
-                <div class="input-field">
+                <div class="input-field" style="padding:10px 0px;">
                   {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion')) !!}
                 </div>
 
-                <div class="demo-section k-content">
+                <div class="demo-section k-content" >
                   <input id="dateInicio" placeholder="Fecha Inicio" name="fechaInicio" style="width: 100%" />
                 </div>
                 <script>
@@ -159,11 +162,11 @@ Contain the main information of an event
                 });
                 </script>
 
-                <div class="input-field">
+                <div class="input-field" style="padding:10px 0px;">
                   {!! Form::text('horaInicio', null, array('class'=>'form-control ','placeholder'=>'Hora Inicio')) !!}
                 </div>
 
-                <div class="demo-section k-content">
+                <div class="demo-section k-content"  >
                   <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%" />
                 </div>
                 <script>
@@ -173,16 +176,16 @@ Contain the main information of an event
                 });
                 </script>
 
-                <div class="input-field">
+                <div class="input-field" style="padding-top:10px;">
                   {!! Form::text('horaFin', null, array('class'=>'form-control ','placeholder'=>'Hora Fin')) !!}
                 </div>
-                <div class="input-field">
+                <div class="input-field" style="padding-top:10px;">
                   {!! Form::text('presupuesto', null, array('class'=>'form-control ','placeholder'=>'Presupuesto')) !!}
                 </div>
-                <div class="input-field">
+                <div class="input-field" style="padding-top:10px;">
                   {!! Form::select('estado',(['0' => 'Estado del evento','1' => 'Activo','2' => 'Inactivo']),null,array('class' => 'form-control','required')) !!}
                 </div>
-                <div>
+                <div  style="padding-top:10px;">
                   {!! Form::button('Aceptar', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
                 </div>
                 {!! Form::close() !!}
@@ -210,7 +213,7 @@ Contain the main information of an event
       <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 55%;background-color:#C9302C">
         <a class="text-progress">55% </a>
       </div>
-      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 45%;background-color:green">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 45%;background-color:#13F229">
         <a  class="text-progress">45% </a>      </div>
       </div>
       <div>

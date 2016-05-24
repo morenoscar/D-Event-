@@ -24,25 +24,26 @@ BASIC CSS AND javascript
 @stop
 
 @section('content')
-<div class="panel panel-default " >
-  <!-- Default panel contents -->
-  <div class="panel-heading pcontenido" style="color:white" id="aux">Lista de Elementos</div>
+<div class="general">
+  <div class="panel panel-default " >
+    <!-- Default panel contents -->
+    <div class="panel-heading pcontenido" style="color:white" id="aux">Lista de Elementos</div>
 
-
-  <img class="draggable object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAN9JREFUeNpi/P//P8NgBkwMgxyMOnDUgaMOHHXgqANHHTjqwAEGoNYMOsYDcoD4A0gblfA3IG7H5yZSHFhHRYeh42RKHUhLx4HwTyC2JNeBtHYcDD8BYglSHUgvx8HwMSBmI9aB9HYcDM8kxoGuQPx2gBz4BNktjNgyBSMjIzy9IgvToJTjhxZbKHYgu4mFnKKTAkeTrHe0qhvqDvxFCwdOBOIvUJpSvd8JaRjoXIzVDmQ3Dfk0CIuCj3RwyxdyHLgMSm+iocNWQunFRKfB0WJm1IGjDhx14KgDBw8ACDAAmlCC5/sLTbQAAAAASUVORK5CYII="></img>
-
-</div>
-<div class="panel panel-default " >
-  <!-- Default panel contents -->
-  <div class="panel-heading pcontenido" style="color:white">Distribución del lugar</div>
-  <div id="grid" class="parent">
-
-  <img class="draggable object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAN9JREFUeNpi/P//P8NgBkwMgxyMOnDUgaMOHHXgqANHHTjqwAEGoNYMOsYDcoD4A0gblfA3IG7H5yZSHFhHRYeh42RKHUhLx4HwTyC2JNeBtHYcDD8BYglSHUgvx8HwMSBmI9aB9HYcDM8kxoGuQPx2gBz4BNktjNgyBSMjIzy9IgvToJTjhxZbKHYgu4mFnKKTAkeTrHe0qhvqDvxFCwdOBOIvUJpSvd8JaRjoXIzVDmQ3Dfk0CIuCj3RwyxdyHLgMSm+iocNWQunFRKfB0WJm1IGjDhx14KgDBw8ACDAAmlCC5/sLTbQAAAAASUVORK5CYII="></img>
+    
+    <img class="draggable object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAN9JREFUeNpi/P//P8NgBkwMgxyMOnDUgaMOHHXgqANHHTjqwAEGoNYMOsYDcoD4A0gblfA3IG7H5yZSHFhHRYeh42RKHUhLx4HwTyC2JNeBtHYcDD8BYglSHUgvx8HwMSBmI9aB9HYcDM8kxoGuQPx2gBz4BNktjNgyBSMjIzy9IgvToJTjhxZbKHYgu4mFnKKTAkeTrHe0qhvqDvxFCwdOBOIvUJpSvd8JaRjoXIzVDmQ3Dfk0CIuCj3RwyxdyHLgMSm+iocNWQunFRKfB0WJm1IGjDhx14KgDBw8ACDAAmlCC5/sLTbQAAAAASUVORK5CYII="></img>
 
   </div>
+  <div class="panel panel-default " >
+    <!-- Default panel contents -->
+    <div class="panel-heading pcontenido" style="color:white">Distribución del lugar</div>
+    <div id="grid" class="parent">
+
+      <img class="draggable object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAN9JREFUeNpi/P//P8NgBkwMgxyMOnDUgaMOHHXgqANHHTjqwAEGoNYMOsYDcoD4A0gblfA3IG7H5yZSHFhHRYeh42RKHUhLx4HwTyC2JNeBtHYcDD8BYglSHUgvx8HwMSBmI9aB9HYcDM8kxoGuQPx2gBz4BNktjNgyBSMjIzy9IgvToJTjhxZbKHYgu4mFnKKTAkeTrHe0qhvqDvxFCwdOBOIvUJpSvd8JaRjoXIzVDmQ3Dfk0CIuCj3RwyxdyHLgMSm+iocNWQunFRKfB0WJm1IGjDhx14KgDBw8ACDAAmlCC5/sLTbQAAAAASUVORK5CYII="></img>
+
+    </div>
+  </div>
+
 </div>
-
-
 
 
 @stop

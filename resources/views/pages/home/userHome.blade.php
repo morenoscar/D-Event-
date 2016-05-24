@@ -57,26 +57,26 @@ END OF CSS AND JS OF DATE PICKER
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         </button>
-        <h3 class="modal-title" id="modal-login-label">Crear Evento</h3>
+        <h3 class="modal-title title" id="modal-login-label">Crear Evento</h3>
         <p>Por favor ingrese los siguientes datos:</p>
       </div>
 
       <div class="modal-body">
         {!! Form::open(['url' => '/home/{{ $currentUser->nombre }}', 'id' => 'averquepasa']) !!}
-        <div class="input-field">
+        <div class="input-field" style="padding-top:10px;">
           {!! Form::text('nombre', null, array('class'=>'form-control ','placeholder'=>'Nombre', 'required')) !!}
         </div>
-        <div class="input-field">
+        <div class="input-field" style="padding-top:10px;">
           {!! Form::select('TipoEvento_idTipoEvento',(['0' => 'Tipo de evento'] + $eventTypes),null,array('class' => 'form-control')) !!}
         </div>
         <!--
         <div class="input-field">
           {!! Form::text('TipoEvento_idTipoEvento', null, array('class'=>'form-control ','placeholder'=>'Tipo Evento', 'required')) !!}
         </div>-->
-        <div class="input-field">
+        <div class="input-field" style="padding:10px 0px;">
           {!! Form::textarea('descripcion', null, array('size' => '30x5', 'class' => 'form-control','placeholder'=>'Descripcion','required')) !!}
         </div>
-        <div class="demo-section k-content" style="padding-top:15px;">
+        <div class="demo-section k-content" >
           <input id="dateInicio" placeholder="Fecha Inicio" name="fechaInicio" style="width: 100%" required/>
         </div>
         <script>
@@ -85,11 +85,11 @@ END OF CSS AND JS OF DATE PICKER
           $("#dateInicio").kendoDatePicker();
         });
         </script>
-        <div class="input-field">
+        <div class="input-field" style="padding:10px 0px;">
           {!! Form::text('horaInicio', null, array('class'=>'form-control ','placeholder'=>'Hora Inicio', 'required')) !!}
         </div>
         <div class="demo-section k-content">
-          <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%; padding-top:15px;" required/>
+          <input id="dateFinal" placeholder="Fecha Final" name="fechaFin" style="width: 100%; " required/>
         </div>
         <script>
         $(document).ready(function() {
@@ -97,13 +97,13 @@ END OF CSS AND JS OF DATE PICKER
           $("#dateFinal").kendoDatePicker();
         });
         </script>
-        <div class="input-field">
+        <div class="input-field" style="padding-top:10px;">
           {!! Form::text('horaFin', null, array('class'=>'form-control ','placeholder'=>'Hora Fin', 'required')) !!}
         </div>
-        <div class="input-field">
+        <div class="input-field" style="padding-top:10px;">
           {!! Form::text('presupuesto', null, array('class'=>'form-control ','placeholder'=>'Presupuesto', 'required')) !!}
         </div>
-        <div style="padding-top:15px;">
+        <div style="padding-top:10px;">
           {!! Form::button('Registrarse', array('class'=>'btn waves-effect waves-light', 'type'=>'submit')) !!}
         </div>
         {!! Form::close() !!}
