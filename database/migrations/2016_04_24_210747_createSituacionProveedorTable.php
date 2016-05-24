@@ -17,7 +17,7 @@ class CreateSituacionProveedorTable extends Migration
         $table->integer('idCategoria');
         $table->integer('idProveedor');
         $table->string('situacion')->default('');
-        $table->integer('precio');
+        $table->integer('precio')->nullable();
 
         $table->primary(array('idProveedor','idCategoria'));
       });
