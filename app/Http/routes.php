@@ -67,7 +67,7 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/eliminar',['middleware' => 'auth','uses' => 'ToDoController@delete']);
   Route::post('/home/{currentUser}/evento/{currentEvent}/toDo/modificar',['middleware' => 'auth','uses' => 'ToDoController@edit']);
 
-  Route::get('/drag',['middleware' => 'guest','uses' => 'ObjetoController@consultarPlano']);
+  Route::get('/evento/{currentEvent}/drag',['middleware' => 'auth','uses' => 'ObjetoController@consultarPlano']);
 
 
   Route::get('/evento/{currentEvent}/invitados',['middleware' => 'auth','uses' => 'InvitadoController@showInvitados']);

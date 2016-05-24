@@ -39,6 +39,9 @@ END OF CSS AND JS OF DATE PICKER
 <div class="">
 	<button type="button" class="launch-modal" data-modal-id="modal-add-guest">Agregar Invitado</button>
 </div>
+<div class="">
+  <a href="/evento/{!! $currentEvent->idEvento !!}/drag">Ubicar Invitado</a>
+</div>
 
 <!--
 EL FORMULARIO DE ENVIAR INVITACION A UN EVENTO
